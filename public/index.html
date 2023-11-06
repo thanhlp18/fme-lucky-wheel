@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>J2Team Community Offline</title>
+    <title>Trung tâm Ngoại ngữ Fabulous Mekong - FME</title>
     <link rel="stylesheet" href="css/typo/typo.css" />
     <link rel="stylesheet" href="css/hc-canvas-luckwheel.css" />
     <style>
@@ -11,13 +11,17 @@
         position:fixed;
         top: 50%;
         left: 50%;
-        margin-top: -250px;
-        margin-left: -250px;
+        transform: translateX(-50%) translateY(-50%);
       }
     </style>
   </head>
-  <body class="bg">
+  <body class="bg" style="  height: 100vh !important;
+  width: 100% !important;">
+  <div class="wheel-container">
+    <h2 class="wheel-title">Quay ngay hôm nay,</br>voucher liền tay</h2>
+    <h2 class="wheel-title wheel-title-warning">Vui lòng sử dụng thiết bị có kích thước màn hình lớn hơn</h2>
     <div class="wrapper typo" id="wrapper">
+      
       <section id="luckywheel" class="hc-luckywheel">
         <div class="hc-luckywheel-container">
           <canvas class="hc-luckywheel-canvas" width="500px" height="500px"
@@ -27,42 +31,54 @@
         <a class="hc-luckywheel-btn" href="javascript:;">Xoay</a>
       </section>
     </div>
+  </div>
+    
+    <audio
+      allow="autoplay"
+      loop
+      src="./assests/nhacNen.mp3"
+      id="wheel-background-music"
+    ></audio>
+    <audio
+      src="./assests//nhacQuaySo.mp3"
+      id="wheel-rotate-music"
+      
+    ></audio>
 </style>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script src="js/hc-canvas-luckwheel.js"></script>
     <script>
+      
       var isPercentage = true;
       var prizes = [
-              {
-                text: "Áo thun J2Team",
-                img: "images/Ao.png",
-                number: 1, // 1%,
-                percentpage: 0.01 // 1%
-              },
-              {
-                text: "Nón J2 Team",
-                img: "images/Non.png",
-                number: 1,
-                percentpage: 0.05 // 5%
-              },
-              {
-                text: "Vòng Tay J2Team",
-                img: "images/Vong.png",
-                number : 1,
-                percentpage: 0.1 // 10%
-              },
-              {
-                text: "J2Team Security",
-                img: "images/j2_logo.png",
-                number: 1,
-                percentpage: 0.24 // 24%
-              },
-              {
-                text: "Chúc bạn may mắn lần sau",
-                img: "images/miss.png",
-                percentpage: 0.6 // 60%
-              },
-            ];
+        {
+          text: "Voucher giảm 500k",
+          number: 10,
+          percentpage: 0.1
+        },
+        {
+          text: "Voucher vé xem phim",
+          number: 5,
+          percentpage: 0.05
+        },
+        {
+          text: "Voucher giảm học phí 100k",
+          number: 150,
+          percentpage: 0.30
+        },
+        {
+          text: "Voucher giảm học phí 50k",
+          number: 400,
+          percentpage: 0.55
+        },
+        {
+          text: "Học tiếng Anh miễn phí trên LMS",
+          number: 999,
+          percentpage: 0
+        },
+      ];
       document.addEventListener(
         "DOMContentLoaded",
         function() {
@@ -72,13 +88,19 @@
               callback &&
                 callback(prizes);
             },
-            mode : "both",
+            mode : "text",
             getPrize: function(callback) {
               var rand = randomIndex(prizes);
               var chances = rand;
               callback && callback([rand, chances]);
             },
             gotBack: function(data) {
+              confetti({
+                zIndex: 99999,
+                particleCount: 500,
+                startVelocity: 30,
+                spread: 360,
+              });
               if(data == null){
                 Swal.fire(
                   'Chương trình kết thúc',
@@ -100,10 +122,21 @@
               }
             }
           });
+          // Swal.fire(
+          //         {title: "Chào mừng </br> các Tân sinh viên </br> Trường Bách Khoa", text: "Cùng tham gia vòng quay may mắn để nhận những phần quà giá trị từ FME nhé!", confirmButtonText: 'Tham gia ngay'}
+          //       ).then(() => {
+          //         document.querySelector("#wheel-background-music").play()
+          //       })
+          
         },
         false
       );
+      
+
       function randomIndex(prizes){
+        console.log(prizes);
+        document.querySelector("#wheel-background-music").pause()
+        document.querySelector("#wheel-rotate-music").play()
         if(isPercentage){
           var counter = 1;
           for (let i = 0; i < prizes.length; i++) {

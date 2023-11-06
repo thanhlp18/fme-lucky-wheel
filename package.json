@@ -1,0 +1,20 @@
+{
+  "name": "fme-lucky-wheel",
+  "version": "1.0.0",
+  "description": "I write this luckywheel for j2team offline event",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "canvas-confetti": "^1.9.0",
+    "firebase": "^10.4.0",
+    "serve": "^14.2.1",
+    "sweetalert2": "^11.7.32",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
+  },
+  "type": "module"
+}

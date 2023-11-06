@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trung tâm Ngoại ngữ Fabulous Mekong - FME</title>
+    <link rel="stylesheet" href="css/typo/typo.css" />
+    <link rel="stylesheet" href="css/hc-canvas-luckwheel.css" />
+    <style>
+      .hc-luckywheel{
+        position:fixed;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+      }
+    </style>
+  </head>
+  <body class="bg" style="  height: 100vh !important;
+  width: 100% !important;">
+  <div class="wheel-container">
+    <!-- <img src="https://fme.edu.vn/wp-content/uploads/2023/07/trung-tam-ngoai-ngu-fme.png" alt="fme-logo" style="width: 80px;
+    margin-top: 48px;"> -->
+    <h2 class="wheel-title">Quay ngay hôm nay,</br>voucher liền tay</h2>
+    <h2 class="wheel-title wheel-title-warning">Vui lòng sử dụng thiết bị có kích thước màn hình lớn hơn</h2>
+    <div class="wrapper typo" id="wrapper">
+      
+      <section id="luckywheel" class="hc-luckywheel">
+        <div class="hc-luckywheel-container">
+          <canvas class="hc-luckywheel-canvas" width="500px" height="500px"
+            >Vòng Xoay May Mắn</canvas
+          >
+        </div>
+        <a class="hc-luckywheel-btn" href="javascript:;">Xoay</a>
+      </section>
+    </div>
+  </div>
+    
+    <audio
+      allow="autoplay"
+      loop
+      src="./assests/nhacNen.mp3"
+      id="wheel-background-music"
+    ></audio>
+    <audio
+      src="./assests//nhacQuaySo.mp3"
+      id="wheel-rotate-music"
+      
+    ></audio>
+</style>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script> -->
+    <script src="main.js"></script>
+  </body>
+</html>
