@@ -14,15 +14,7 @@ import {
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyCsbdgojzQm-h0HDoZvn__yRY1Hwz03Wbs",
-  authDomain: "fme-lucky-wheel.firebaseapp.com",
-  projectId: "fme-lucky-wheel",
-  storageBucket: "fme-lucky-wheel.appspot.com",
-  messagingSenderId: "995289571434",
-  appId: "1:995289571434:web:156cdbbc8a0d39d5ac6a13",
-  measurementId: "G-0E2VCP4YYE",
-  databaseURL:
-    "https://fme-lucky-wheel-default-rtdb.asia-southeast1.firebasedatabase.app/",
+
 };
 
 // Initialize Firebase
