@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Trung tâm Ngoại ngữ Fabulous Mekong - FME</title>
   <link rel="stylesheet" href="css/typo/typo.css" />
   <link rel="stylesheet" href="css/hc-canvas-luckwheel.css" />
@@ -19,38 +19,38 @@
 
 <body class="bg" style="  height: 100vh !important;
     width: 100% !important;">
-  <div style="width: 100%; border: none;">
-    <div class="wheel-container" id="content">
-      <div style="position: relative;">
-        <h2 class="wheel-title">Thử vận may</br>rinh ngay phần thưởng</h2>
-        <p class="wheel-title-main">CÙNG M.I.A</p>
-        <h2 class="wheel-title-subtitle">Nhấn để quay, nhận liền tay quà tặng hấp dẫn</h2>
-      </div>
-      <div class="typo" id="wrapper">
-        <div id="luckywheel" class="hc-luckywheel">
-          <div style="position: relative;">
-            <div class="hc-luckywheel-container">
-              <canvas class="hc-luckywheel-canvas" width="500px" height="500px">Vòng Xoay May Mắn</canvas>
-            </div>
-            <div style="position: relative; margin: 15px;">
-              <img src="./assests/wheel.png" alt="" style="position: absolute;" class="wheel">
-            </div>
-          </div>
-          <div class="hc-luckywheel-pointer"></div>
-          <a class="hc-luckywheel-btn" href="javascript:;">
-            <p>
-              BẮT<br />ĐẦU<br />CHƠI
-            </p>
-          </a>
 
+  <div class="wheel-container" id="content">
+    <div style="position: relative;">
+      <h2 class="wheel-title">Thử vận may</br>rinh ngay phần thưởng</h2>
+      <p class="wheel-title-main">CÙNG M.I.A</p>
+      <h2 class="wheel-title-subtitle">Nhấn để quay, nhận liền tay quà tặng hấp dẫn</h2>
+    </div>
+    <div class="typo" id="wrapper">
+      <div id="luckywheel" class="hc-luckywheel">
+        <div style="position: relative;">
+          <div class="hc-luckywheel-container">
+            <canvas class="hc-luckywheel-canvas" width="500px" height="500px">Vòng Xoay May Mắn</canvas>
+          </div>
+          <div style="position: relative; margin: 15px;">
+            <img src="./assests/wheel.png" alt="" style="position: absolute;" class="wheel">
+          </div>
         </div>
+        <div class="hc-luckywheel-pointer"></div>
+        <a class="hc-luckywheel-btn" href="javascript:;">
+          <p>
+            BẮT<br />ĐẦU<br />CHƠI
+          </p>
+        </a>
       </div>
     </div>
-    <h2 class="footer-title" id="footer">
-      NHANH TAY LẤY NGAY QUÀ TẶNG SỐ LƯỢNG CÓ HẠN CÙNG M.I.A
-    </h2>
-    <!--Giao diện nhận phần thưởng rồi -->
-    <!-- <div class="overlay" id="popupOverlay">
+  </div>
+  </div>
+  <h2 class="footer-title" id="footer">
+    NHANH TAY LẤY NGAY QUÀ TẶNG SỐ LƯỢNG CÓ HẠN CÙNG M.I.A
+  </h2>
+  <!--Giao diện nhận phần thưởng rồi -->
+  <!-- <div class="overlay" id="popupOverlay">
       <div class="popup">
         <img src="./assests/Icon Trúng thưởng.png" alt="🎉" class="win-icon">
         <div class="title">Chúc mừng bạn nhận được</div>
@@ -61,23 +61,22 @@
           sẽ được xem là không hợp lệ.</div>
       </div>
     </div> -->
-    <!--Giao diện đã có quà rồi -->
-    <div class="overlay" id="popupOverlay">
-      <div class="popup">
-        <img src="./assests/Icon hết lượt quay.png" alt="🎉" class="win-icon">
-        <div class="title" id="title"></div>
-        <img id="prizeImage" src="" alt="MIA Device">
-        <a href="#" class="btn" onclick="closeModal()">Điền thông tin để nhận quà</a>
-        <div class="subtitle">Trường hợp xuất hiện 2 giải thưởng cùng mã (code) hoặc<br />mã không hợp lệ, giải thưởng
-          sẽ được xem là không hợp lệ.</div>
-      </div>
+  <!--Giao diện đã có quà rồi -->
+
+  <div class="overlay" id="popupOverlay">
+    <div class="popup">
+      <img src="./assests/Icon hết lượt quay.png" alt="🎉" class="win-icon">
+      <div class="title" id="title"></div>
+      <img id="prizeImage" src="" alt="MIA Device">
+      <a class="btn" onclick="closeModal()">Điền thông tin để nhận quà</a>
+      <div class="subtitle">Trường hợp xuất hiện 2 giải thưởng cùng mã (code) hoặc<br />mã không hợp lệ, giải thưởng
+        sẽ được xem là không hợp lệ.</div>
     </div>
   </div>
-
   <audio allow="autoplay" loop src="./assests/nhacNen.mp3" id="wheel-background-music"></audio>
   <audio src="./assests//nhacQuaySo.mp3" id="wheel-rotate-music"></audio>
   </style>
-  <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/hc-canvas-luckwheel@1.0.2/dist/hc-canvas-luckwheel.min.js"></script>
@@ -171,8 +170,7 @@
       } else {
         // Nếu trúng thưởng, cập nhật phần thưởng
         //document.getElementById("prizeText").textContent = data.text;
-        document.getElementById("title").innerHTML = `Bạn đã nhận được\n<p style="margin:0px;color: #fff;
-        font-weight: 900 !important;  font-size: 20px !important;">${data.text}</p>\n<p style="margin:0px";>từ M.I.A rồi, hãy điền thông tin</p><p style="margin:0px";>để nhận quà ngay nhé!</p>`;
+        document.getElementById("title").innerHTML = `Bạn đã nhận được\n<p class="product-name">${data.text}</p>\n<p style="margin:0px";>từ M.I.A rồi, hãy điền thông tin</p><p style="margin:0px";>để nhận quà ngay nhé!</p>`;
 
         if (data.text == 'Túi Tote' || data.text == 'Túi Sáp 100gram' || data.text == 'Triệt Nách Nữ 499K Nam 899K') {
           document.getElementById("prizeImage").src = data.img;
