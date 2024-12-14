@@ -204,11 +204,25 @@ body {
     -ms-transform-origin: 50% 175px;
     transform-origin: 50% 175px;
     width: 55px;
-    font-size: 10px;
-    font-weight: 500;
     text-wrap: wrap;
     color: #000;
     opacity: 1 !important;
+    font-size: 8px;
+    font-family: "Main Font", sans-serif;
+    font-weight: 600;
+  }
+
+  /* Thêm con trỏ (pointer) ở phía trên vòng quay */
+  .hc-luckywheel-pointer {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    width: 75px;
+    height: 75px;
+    transform: translateX(-45%);
+    background: url('../assests/pointer.png') no-repeat center center;
+    background-size: contain;
+    z-index: 55;
   }
 
   .hc-luckywheel-item img {
@@ -344,7 +358,9 @@ body {
     -ms-transform-origin: 50% 175px;
     transform-origin: 50% 175px;
     width: 65px;
-    font-size: 12px;
+    font-size: 14px;
+    font-family: "Main Font", sans-serif;
+    font-weight: 600;
   }
 
   .hc-luckywheel-item img {
@@ -377,29 +393,48 @@ body {
     height: 500px;
   }
 
+  .hc-luckywheel-item {
+    position: absolute;
+    left: 120%;
+    top: -35px;
+    opacity: 1;
+
+    color: #000;
+    font-weight: bold;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.6);
+    z-index: 25 !important;
+  }
+
   .hc-luckywheel-item span {
-    -webkit-transform-origin: 50% 250px;
-    -ms-transform-origin: 50% 250px;
-    transform-origin: 50% 250px;
+    -webkit-transform-origin: 50% 285px;
+    -ms-transform-origin: 50% 285px;
+    transform-origin: 50% 285px;
     width: 80px;
-    font-size: 16px;
+    font-size: 14px;
+    font-family: "Main Font", sans-serif;
+    font-weight: 600;
   }
 
   .hc-luckywheel-item img {
-    width: 100px;
-    height: 100px;
+    position: absolute;
+    top: 110px;
+    left: 25px;
+    width: 35px;
+    height: 65px;
   }
 
   .hc-luckywheel-btn {
     position: absolute;
-    left: 200px;
-    top: 200px;
-    width: 100px;
-    height: 100px;
+    left: 170px;
+    top: 135px;
+    width: 140px;
+    height: 140px;
     line-height: 25px;
   }
 
   .hc-luckywheel-btn p {
+    font-size: 32px;
+    line-height: 110%;
     margin-top: 13px;
   }
 
@@ -409,37 +444,78 @@ body {
     font-size: 38px !important;
   }
 
-  .wheel-title-main{
+  .wheel-title-main {
     font-size: 30px;
   }
 
-  .wheel-title-subtitle{
+  .wheel-title-subtitle {
     font-size: 32px !important;
   }
 
   .bg {
     background-image: url("../assests/background_tablet.png");
-    object-fit: contain;
+    object-fit: scale-down;
     background-size: cover;
     object-position: center !important;
     background-color: #F4F4F4;
     background-repeat: no-repeat;
     height: 100%;
   }
-}
 
+  .hc-luckywheel-container {
+    will-change: transform;
+    /* Giúp trình duyệt biết trước để tối ưu hóa rendering */
+    position: absolute;
+    left: -1%;
+    top: -47px;
+    z-index: 40;
+    width: 498px;
+    /* Kích thước cố định cho chiều rộng */
+    height: 498px;
+    /* Kích thước cố định cho chiều cao */
+    height: inherit;
+    border-radius: inherit;
+    background-clip: padding-box;
+    transition: transform 2s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
 
-/* Thêm con trỏ (pointer) ở phía trên vòng quay */
-.hc-luckywheel-pointer {
-  position: absolute;
-  top: -30px;
-  left: 50%;
-  width: 75px;
-  height: 75px;
-  transform: translateX(-45%);
-  background: url('../assests/pointer.png') no-repeat center center;
-  background-size: contain;
-  z-index: 55;
+  .wheel {
+    width: 570px;
+    height: 570px;
+    top: -80px;
+    left: -12%;
+    position: relative;
+    margin: auto;
+    z-index: 10;
+  }
+
+  .footer-title {
+    position: absolute;
+    bottom: 0%;
+    width: 90%;
+    margin: auto;
+
+    left: 5%;
+    border-radius: 4px;
+    text-align: center;
+    font-family: "Footer", sans-serif;
+    border: none;
+    font-size: 28px;
+    font-weight: 500;
+    background-color: #FAC944;
+  }
+
+  .hc-luckywheel-pointer {
+    position: absolute;
+    top: -160px;
+    left: 50%;
+    width: 75px;
+    height: 130px;
+    transform: translateX(-45%);
+    background: url('../assests/pointer.png') no-repeat center center;
+    background-size: contain;
+    z-index: 55;
+  }
 }
 
 .wheel-title-main {
