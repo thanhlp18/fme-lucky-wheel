@@ -393,12 +393,12 @@ body {
 
 @media only screen and (min-width: 310px) and (min-height: 750px) {
   .footer-title {
-    position: absolute;
+    position: relative;
     bottom: 0%;
     width: fit-content;
-    margin: auto;
+    margin: auto !important;
     padding: 4px;
-    left: 11%;
+    left: 0;
     border-radius: 4px;
     text-align: center;
     font-family: "Footer", sans-serif;
