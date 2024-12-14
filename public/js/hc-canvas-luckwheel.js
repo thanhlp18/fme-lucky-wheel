@@ -113,28 +113,20 @@
       ctx.rotate((((360 / num) * i - rotateDeg) * Math.PI) / 180);
       ctx.arc(0, 0, 250, 0, (2 * Math.PI) / num, false); // Radius
       if (i % 2 == 0) {
-        ctx.fillStyle = "#ffb820";
+        ctx.fillStyle = "#ffffff";
       } else {
-        ctx.fillStyle = "#ffcb3f";
+        ctx.fillStyle = "#E8D684";
       }
       ctx.fill();
       ctx.lineWidth = 1;
-      ctx.strokeStyle = "#e4370e";
-      ctx.stroke();
       ctx.restore();
       var prizeList = opts.prizes;
       html.push('<li class="hc-luckywheel-item"> <span style="');
       html.push(transform + ": rotate(" + i * turnNum + 'turn)">');
-      if (opts.mode == "both") {
-        html.push("<p id='curve'>" + prizeList[i].text + "</p>");
-        html.push('<img src="' + prizeList[i].img + '" />');
-      } else if (opts.mode == "text") {
-        html.push("<p id='curve'>" + prizeList[i].text + "</p>");
-      } else if (prizeList[i].img) {
-        html.push('<img src="' + prizeList[i].img + '" />');
-      } else {
-        html.push('<p id="curve">' + prizeList[i].text + "</p>");
-      }
+
+      html.push("<p id='curve'>" + prizeList[i].text + "</p>");
+      html.push(`<img src="${prizeList[i].img}"/>`);
+
       html.push("</span> </li>");
       if (i + 1 === num) {
         prizeItems.className = "hc-luckywheel-list";
@@ -190,7 +182,7 @@
       return fnGotBack(null);
     } else {
       removeClass(btn, "disabled");
-      return fnGotBack(prizes[optsPrize.prizeId].text);
+      return fnGotBack(prizes[optsPrize.prizeId]);
     }
   }
 
@@ -261,3 +253,10 @@
     });
   }
 })();
+// Xử lý việc quay vòng quay
+function rotateWheel() {
+  var spins = Math.floor(Math.random() * 5000 + 2000); // Random số lần quay
+  var rotation = spins + 'deg'; // Tính toán góc quay
+  canvas.style.transition = 'transform 6s ease-out';
+  canvas.style.transform = 'rotate(' + rotation + ')';
+}
