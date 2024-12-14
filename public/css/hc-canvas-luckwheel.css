@@ -1,3 +1,42 @@
+@font-face {
+  font-family: 'Title';
+  /* Tên font bạn muốn sử dụng */
+  src: url('../fonts/title.ttf') format('truetype');
+  /* Đường dẫn đến file font */
+}
+
+@font-face {
+  font-family: 'Subtitle';
+  /* Tên font bạn muốn sử dụng */
+  src: url('../fonts/subtitle.otf') format('truetype');
+  /* Đường dẫn đến file font */
+}
+
+@font-face {
+  font-family: 'Footer';
+  /* Tên font bạn muốn sử dụng */
+  src: url('../fonts/footer_R.TTF') format('truetype');
+  /* Đường dẫn đến file font */
+}
+
+@font-face {
+  font-family: 'Main';
+  /* Tên font bạn muốn sử dụng */
+  src: url('../fonts/main.otf') format('truetype');
+  /* Đường dẫn đến file font */
+}
+
+@font-face {
+  font-family: 'Main Font';
+  /* Tên font bạn muốn sử dụng */
+  src: url('../fonts/main-font.otf') format('truetype');
+  /* Đường dẫn đến file font */
+}
+
+* {
+  box-sizing: border-box;
+}
+
 .hc-luckywheel ul,
 .hc-luckywheel li {
   margin: 0;
@@ -7,98 +46,105 @@
 
 .hc-luckywheel {
   position: relative;
-  border-radius: 50%;
-  border: 16px solid #e44025;
-  box-shadow: 0 2px 3px #333, 0 0 2px #000;
+}
+
+@keyframes wheel-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .hc-luckywheel-container {
+  will-change: transform;
+  /* Giúp trình duyệt biết trước để tối ưu hóa rendering */
   position: absolute;
-  left: 0;
-  top: 0;
-  z-index: 1;
-  width: inherit;
+  left: 10%;
+  top: 20px;
+  z-index: 40;
+  width: 280px;
+  /* Kích thước cố định cho chiều rộng */
+  height: 280px;
+  /* Kích thước cố định cho chiều cao */
   height: inherit;
   border-radius: inherit;
   background-clip: padding-box;
-  background-color: #ffcb3f;
-  -webkit-transition: transform 6s ease;
-  transition: transform 6s ease;
+  transition: transform 2s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.wheel {
+  width: 320px;
+  height: 320px;
+  position: relative;
+  margin: auto;
+  z-index: 10;
 }
 
 .hc-luckywheel-container canvas {
   width: inherit;
   height: inherit;
   border-radius: 50%;
+  z-index: 25;
 }
 
 .hc-luckywheel-list {
   position: absolute;
   left: 0;
   top: 0;
-  width: inherit;
-  height: inherit;
-  z-index: 2;
+  width: 150px;
+  height: 150px;
+  z-index: 15;
 }
 
 .hc-luckywheel-item {
   position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  color: #e4370e;
+  left: 68px;
+  top: -35px;
+  opacity: 1;
+  width: 145px;
+  height: 145px;
+  color: #000;
   font-weight: bold;
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.6);
+  z-index: 25 !important;
 }
 
 .hc-luckywheel-item span {
   position: relative;
   display: block;
-  padding-top: 20px;
-  margin: 0 auto;
+  padding-top: 35px;
+  margin: auto;
   text-align: center;
+  text-wrap: wrap;
+  z-index: 25;
 }
 
 .hc-luckywheel-item img {
   position: relative;
-  top: -20px;
-  left: 0px;
+  top: 80px;
+  left: 15px;
 }
 
 .hc-luckywheel-btn {
   position: absolute;
-  z-index: 3;
+  z-index: 30;
   border-radius: 50%;
-  color: #f4e9cc;
-  background-color: #e44025;
+  color: #fff;
+  background-color: #FFCB3F;
   text-align: center;
-  font-size: 20px;
+  font-size: 18px;
   text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.6);
-  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.6);
   text-decoration: none;
 }
 
-.hc-luckywheel-btn::after {
-  position: absolute;
-  display: block;
-  content: "";
-  width: 0;
-  height: 0;
-  overflow: hidden;
-  border-style: solid;
-  border-color: transparent;
-  border-bottom-color: #e44025;
-}
 
 .hc-luckywheel-btn.disabled {
   pointer-events: none;
-  background: #b07a7b;
+  background: #fff;
   color: #ccc;
-}
-
-.hc-luckywheel-btn.disabled::after {
-  border-bottom-color: #b07a7b;
 }
 
 body {
@@ -106,104 +152,198 @@ body {
   padding: 0;
 }
 
-.bg {
-  background-image: url("../assests/background.jpg");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
 .wheel-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 32px;
   flex-direction: column;
+  margin-top: 32px;
 }
 
 .wheel-title {
   color: #fff;
-
+  font-family: 'Title', sans-serif;
   text-align: center;
+  font-size: 24px !important;
   text-transform: uppercase;
   font-weight: bold;
-  /*   text-shadow: 0 0 5px #f562ff, 0 0 15px #f562ff, 0 0 25px #f562ff,
-    0 0 20px #f562ff, 0 0 30px #890092, 0 0 80px #890092, 0 0 80px #890092;
-  color: #fccaff; */
-  text-shadow: 0 0 5px #ffa500, 0 0 15px #ffa500, 0 0 20px #ffa500,
-    0 0 40px #ffa500, 0 0 60px #ff0000, 0 0 10px #ff8d00, 0 0 98px #ff0000;
-  color: #fff6a9;
+  -webkit-text-stroke: 1px #825B3D;
+  text-shadow: 0px 4px 2px #997354;
+  /* Bóng dưới chân chữ */
+  /* Viền đen xung quanh chữ */
+  line-height: 1.2;
   text-align: center;
   animation: blink 12s infinite;
   -webkit-animation: blink 12s infinite;
   margin-top: 24px;
+  margin-bottom: 0px;
 }
 
-@media only screen and (max-width: 320px) {
+@media only screen and (max-width: 310px) {
   .hc-luckywheel {
     visibility: hidden;
   }
+
   .wheel-title {
     visibility: hidden;
   }
+
   .wheel-title-warning {
     visibility: visible;
   }
 }
 
-@media only screen and (min-width: 320px) {
+@media only screen and (min-width: 310px) {
   .hc-luckywheel {
-    width: 280px;
-    height: 280px;
+    width: 350px;
+    height: 500px;
   }
 
   .hc-luckywheel-item span {
-    -webkit-transform-origin: 50% 140px;
-    -ms-transform-origin: 50% 140px;
-    transform-origin: 50% 140px;
-    width: 100px;
-    font-size: 12px;
+    -webkit-transform-origin: 50% 175px;
+    -ms-transform-origin: 50% 175px;
+    transform-origin: 50% 175px;
+    width: 55px;
+    font-size: 10px;
+    font-weight: 500;
+    text-wrap: wrap;
+    color: #000;
+    opacity: 1 !important;
   }
 
   .hc-luckywheel-item img {
-    width: 100px;
-    height: 100px;
+    position: absolute;
+    width: 25px;
+    height: 45px;
+  }
+
+  .bg {
+    background-image: url("../assests/background.png");
+    object-fit: contain;
+    object-position: center !important;
+    background-color: #F4F4F4;
+    background-repeat: no-repeat;
+    height: 100%;
   }
 
   .hc-luckywheel-btn {
     position: absolute;
-    left: 110px;
-    top: 110px;
-    width: 60px;
-    height: 60px;
-    line-height: 60px;
+    left: 136px;
+    top: 122px;
+    width: 78px;
+    height: 78px;
+    line-height: 25px;
+    z-index: 50;
   }
-  .hc-luckywheel-btn::after {
-    left: 5px;
-    top: -36px;
-    border-width: 26px;
+
+  .hc-luckywheel-btn p {
+    font-family: "Title", sans-serif;
+    line-height: 22px;
+    -webkit-text-stroke: 1px #825B3D;
+    text-shadow: 0px 4px 2px #997354;
+    margin-top: 4px;
   }
+
   .wheel-title {
     padding: 0 4px;
     font-size: 20px;
     margin-top: 40 px;
   }
+
   .wheel-title-warning {
     visibility: hidden;
   }
 }
 
+.footer-title {
+  position: absolute;
+  bottom: -10%;
+  width: 90%;
+  margin: auto;
+
+  left: 5%;
+  border-radius: 4px;
+  text-align: center;
+  font-family: "Footer", sans-serif;
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  background-color: #FAC944;
+}
+
+.popup .subtitle {
+  position: relative;
+  bottom: 0%;
+  font-size: 11px;
+  margin: auto !important;
+  width: fit-content;
+  text-align: justify;
+  font-family: "Main Font", sans-serif;
+  color: #fff;
+  font-weight: lighter;
+
+}
+
+@media only screen and (min-width: 410px) and (min-height: 750px) {
+  .footer-title {
+    position: absolute;
+    bottom: 10%;
+    width: fit-content;
+    margin: auto;
+    padding: 4px;
+    left: 11%;
+    border-radius: 4px;
+    text-align: center;
+    font-family: "Footer", sans-serif;
+    border: none;
+    font-size: 14px;
+    font-weight: 500;
+    background-color: #FAC944;
+  }
+
+  .popup .subtitle {
+    position: relative;
+    bottom: -30%;
+    font-size: 11px;
+    margin: auto !important;
+    width: fit-content;
+    text-align: justify;
+    font-family: "Main Font", sans-serif;
+    color: #fff;
+    font-weight: lighter;
+
+  }
+}
+
+@media only screen and (min-width: 310px) and (min-height: 915px) {
+  .footer-title {
+    position: absolute;
+    bottom: 10%;
+    width: fit-content;
+    margin: auto;
+    padding: 4px;
+    left: 12%;
+    border-radius: 4px;
+    text-align: center;
+    font-family: "Footer", sans-serif;
+    border: none;
+    font-size: 14px;
+    font-weight: 500;
+    background-color: #FAC944;
+  }
+}
+
 @media only screen and (min-width: 480px) {
   .hc-luckywheel {
-    width: 350px;
-    height: 350px;
+    width: 450px;
+    height: 450px;
   }
 
   .hc-luckywheel-item span {
-    -webkit-transform-origin: 50% 170px;
-    -ms-transform-origin: 50% 170px;
-    transform-origin: 50% 170px;
-    width: 150px;
+    -webkit-transform-origin: 50% 175px;
+    -ms-transform-origin: 50% 175px;
+    transform-origin: 50% 175px;
+    width: 65px;
     font-size: 12px;
   }
 
@@ -214,17 +354,17 @@ body {
 
   .hc-luckywheel-btn {
     position: absolute;
-    left: 144px;
-    top: 144px;
-    width: 60px;
-    height: 60px;
-    line-height: 60px;
+    left: 125px;
+    top: 125px;
+    width: 100px;
+    height: 100px;
+    line-height: 25px;
   }
-  .hc-luckywheel-btn::after {
-    left: 5px;
-    top: -36px;
-    border-width: 26px;
+
+  .hc-luckywheel-btn p {
+    margin-top: 13px;
   }
+
   .wheel-title {
     padding: 0 6px;
     font-size: 20px;
@@ -241,7 +381,7 @@ body {
     -webkit-transform-origin: 50% 250px;
     -ms-transform-origin: 50% 250px;
     transform-origin: 50% 250px;
-    width: 150px;
+    width: 80px;
     font-size: 16px;
   }
 
@@ -252,27 +392,189 @@ body {
 
   .hc-luckywheel-btn {
     position: absolute;
-    left: 210px;
-    top: 210px;
-    width: 80px;
-    height: 80px;
-    line-height: 80px;
+    left: 200px;
+    top: 200px;
+    width: 100px;
+    height: 100px;
+    line-height: 25px;
   }
 
-  .hc-luckywheel-btn::after {
-    left: 10px;
-    top: -46px;
-    border-width: 30px;
+  .hc-luckywheel-btn p {
+    margin-top: 13px;
   }
 
   .wheel-title {
+    margin-top: 70px;
     padding: 0 8px;
-    font-size: 24px;
+    font-size: 38px !important;
+  }
+
+  .wheel-title-main{
+    font-size: 30px;
+  }
+
+  .wheel-title-subtitle{
+    font-size: 32px !important;
+  }
+
+  .bg {
+    background-image: url("../assests/background_tablet.png");
+    object-fit: contain;
+    background-size: cover;
+    object-position: center !important;
+    background-color: #F4F4F4;
+    background-repeat: no-repeat;
+    height: 100%;
   }
 }
 
-@media only screen and (min-width: 768px) {
-  .wheel-title {
-    visibility: hidden;
-  }
+
+/* Thêm con trỏ (pointer) ở phía trên vòng quay */
+.hc-luckywheel-pointer {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  width: 75px;
+  height: 75px;
+  transform: translateX(-45%);
+  background: url('../assests/pointer.png') no-repeat center center;
+  background-size: contain;
+  z-index: 55;
+}
+
+.wheel-title-main {
+  margin-bottom: 0px;
+  font-family: "Main", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: 800;
+  text-align: center;
+  margin-top: 4px;
+}
+
+.wheel-title-subtitle {
+  font-family: "Subtitle", sans-serif;
+  font-optical-sizing: auto;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 0px;
+  font-style: normal;
+  margin-top: 3px;
+}
+
+/* Nội dung chính */
+.wheel-container {
+  transition: filter 0.3s ease;
+}
+
+/* Làm mờ nội dung khi modal hiển thị */
+.wheel-container.blur {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  filter: blur(3px);
+  overflow: hidden !important;
+}
+
+.footer-title {
+  transition: filter 0.3s ease;
+}
+
+.footer-title.blur {
+  filter: blur(3px);
+}
+
+/* Modal Overlay */
+.overlay {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background: rgba(120, 103, 41, 0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 1000;
+}
+
+.popup {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  text-align: center;
+  position: relative;
+}
+
+.popup .win-icon {
+  margin-top: 50px;
+  width: 70px;
+  height: 70px;
+}
+
+.popup .title {
+  font-size: 18px;
+  font-family: "Main Font", sans-serif;
+  color: #fff;
+  font-weight: lighter;
+  margin-bottom: 8px;
+}
+
+.popup .title br {
+  font-size: 1px;
+}
+
+.popup .prize {
+  font-size: 28px;
+  font-family: "Main Font", sans-serif;
+  color: #fff;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.popup img {
+  max-width: 190px;
+  margin: 18px auto;
+  display: block;
+}
+
+.popup .info {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.popup .btn {
+  display: inline-block;
+  margin-top: 10px;
+  background: #F5CB41;
+  font-family: "Footer", sans-serif;
+  color: #333;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 10px;
+  text-decoration: none;
+  padding: 4px 10px;
+  cursor: pointer;
+}
+
+.popup .btn:hover {
+  background: #f5b700;
+}
+
+.wheel-title-subtitle {
+  font-family: "Subtitle", sans-serif;
+  font-optical-sizing: auto;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 0px;
+  font-style: normal;
+  margin-top: 3px;
+  align-items: center;
+}
+
+.rotate {
+  transform: rotate(270deg);
 }

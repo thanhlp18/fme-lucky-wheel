@@ -1,197 +1,307 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Trung tâm Ngoại ngữ Fabulous Mekong - FME</title>
-    <link rel="stylesheet" href="css/typo/typo.css" />
-    <link rel="stylesheet" href="css/hc-canvas-luckwheel.css" />
-    <style>
-      .hc-luckywheel{
-        position:fixed;
-        top: 50%;
-        left: 50%;
-        transform: translateX(-50%) translateY(-50%);
-      }
-    </style>
-  </head>
-  <body class="bg" style="  height: 100vh !important;
-  width: 100% !important;">
-  <div class="wheel-container">
-    <h2 class="wheel-title">Quay ngay hôm nay,</br>voucher liền tay</h2>
-    <h2 class="wheel-title wheel-title-warning">Vui lòng sử dụng thiết bị có kích thước màn hình lớn hơn</h2>
-    <div class="wrapper typo" id="wrapper">
-      
-      <section id="luckywheel" class="hc-luckywheel">
-        <div class="hc-luckywheel-container">
-          <canvas class="hc-luckywheel-canvas" width="500px" height="500px"
-            >Vòng Xoay May Mắn</canvas
-          >
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trung tâm Ngoại ngữ Fabulous Mekong - FME</title>
+  <link rel="stylesheet" href="css/typo/typo.css" />
+  <link rel="stylesheet" href="css/hc-canvas-luckwheel.css" />
+  <style>
+    .hc-luckywheel {
+      position: relative;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(35%);
+    }
+  </style>
+</head>
+
+<body class="bg" style="  height: 100vh !important;
+    width: 100% !important;">
+  <div style="width: 100%; border: none;">
+    <div class="wheel-container" id="content">
+      <div style="position: relative;">
+        <h2 class="wheel-title">Thử vận may</br>rinh ngay phần thưởng</h2>
+        <p class="wheel-title-main">CÙNG M.I.A</p>
+        <h2 class="wheel-title-subtitle">Nhấn để quay, nhận liền tay quà tặng hấp dẫn</h2>
+      </div>
+      <div class="typo" id="wrapper">
+        <div id="luckywheel" class="hc-luckywheel">
+          <div style="position: relative;">
+            <div class="hc-luckywheel-container">
+              <canvas class="hc-luckywheel-canvas" width="500px" height="500px">Vòng Xoay May Mắn</canvas>
+            </div>
+            <div style="position: relative; margin: 15px;">
+              <img src="./assests/wheel.png" alt="" style="position: absolute;" class="wheel">
+            </div>
+          </div>
+          <div class="hc-luckywheel-pointer"></div>
+          <a class="hc-luckywheel-btn" href="javascript:;">
+            <p>
+              BẮT<br />ĐẦU<br />CHƠI
+            </p>
+          </a>
+
         </div>
-        <a class="hc-luckywheel-btn" href="javascript:;">Xoay</a>
-      </section>
+      </div>
+    </div>
+    <h2 class="footer-title" id="footer">
+      NHANH TAY LẤY NGAY QUÀ TẶNG SỐ LƯỢNG CÓ HẠN CÙNG M.I.A
+    </h2>
+    <!--Giao diện nhận phần thưởng rồi -->
+    <!-- <div class="overlay" id="popupOverlay">
+      <div class="popup">
+        <img src="./assests/Icon Trúng thưởng.png" alt="🎉" class="win-icon">
+        <div class="title">Chúc mừng bạn nhận được</div>
+        <div class="prize" id="prizeText"></div>
+        <img id="prizeImage" src="" alt="MIA Device">
+        <a href="#" class="btn" onclick="closeModal()">Điền thông tin để nhận quà</a>
+        <div class="subtitle">Trường hợp xuất hiện 2 giải thưởng cùng mã (code) hoặc<br />mã không hợp lệ, giải thưởng
+          sẽ được xem là không hợp lệ.</div>
+      </div>
+    </div> -->
+    <!--Giao diện đã có quà rồi -->
+    <div class="overlay" id="popupOverlay">
+      <div class="popup">
+        <img src="./assests/Icon hết lượt quay.png" alt="🎉" class="win-icon">
+        <div class="title" id="title"></div>
+        <img id="prizeImage" src="" alt="MIA Device">
+        <a href="#" class="btn" onclick="closeModal()">Điền thông tin để nhận quà</a>
+        <div class="subtitle">Trường hợp xuất hiện 2 giải thưởng cùng mã (code) hoặc<br />mã không hợp lệ, giải thưởng
+          sẽ được xem là không hợp lệ.</div>
+      </div>
     </div>
   </div>
-    
-    <audio
-      allow="autoplay"
-      loop
-      src="./assests/nhacNen.mp3"
-      id="wheel-background-music"
-    ></audio>
-    <audio
-      src="./assests//nhacQuaySo.mp3"
-      id="wheel-rotate-music"
-      
-    ></audio>
-</style>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-    <script src="js/hc-canvas-luckwheel.js"></script>
-    <script>
-      
-      var isPercentage = true;
-      var prizes = [
-        {
-          text: "Voucher giảm 500k",
-          number: 10,
-          percentpage: 0.1
-        },
-        {
-          text: "Voucher vé xem phim",
-          number: 5,
-          percentpage: 0.05
-        },
-        {
-          text: "Voucher giảm học phí 100k",
-          number: 150,
-          percentpage: 0.30
-        },
-        {
-          text: "Voucher giảm học phí 50k",
-          number: 400,
-          percentpage: 0.55
-        },
-        {
-          text: "Học tiếng Anh miễn phí trên LMS",
-          number: 999,
-          percentpage: 0
-        },
-      ];
-      document.addEventListener(
-        "DOMContentLoaded",
-        function() {
-          hcLuckywheel.init({
-            id: "luckywheel",
-            config: function(callback) {
-              callback &&
-                callback(prizes);
-            },
-            mode : "text",
-            getPrize: function(callback) {
-              var rand = randomIndex(prizes);
-              var chances = rand;
-              callback && callback([rand, chances]);
-            },
-            gotBack: function(data) {
-              confetti({
-                zIndex: 99999,
-                particleCount: 500,
-                startVelocity: 30,
-                spread: 360,
-              });
-              if(data == null){
-                Swal.fire(
-                  'Chương trình kết thúc',
-                  'Đã hết phần thưởng',
-                  'error'
-                )
-              } else if (data == 'Chúc bạn may mắn lần sau'){
-                Swal.fire(
-                  'Bạn không trúng thưởng',
-                  data,
-                  'error'
-                )
-              } else{
-                Swal.fire(
-                  'Đã trúng giải',
-                  data,
-                  'success'
-                )
-              }
-            }
-          });
-          // Swal.fire(
-          //         {title: "Chào mừng </br> các Tân sinh viên </br> Trường Bách Khoa", text: "Cùng tham gia vòng quay may mắn để nhận những phần quà giá trị từ FME nhé!", confirmButtonText: 'Tham gia ngay'}
-          //       ).then(() => {
-          //         document.querySelector("#wheel-background-music").play()
-          //       })
-          
-        },
-        false
-      );
-      
 
-      function randomIndex(prizes){
-        console.log(prizes);
-        document.querySelector("#wheel-background-music").pause()
-        document.querySelector("#wheel-rotate-music").play()
-        if(isPercentage){
-          var counter = 1;
-          for (let i = 0; i < prizes.length; i++) {
-            if(prizes[i].number == 0){
-              counter++
+  <audio allow="autoplay" loop src="./assests/nhacNen.mp3" id="wheel-background-music"></audio>
+  <audio src="./assests//nhacQuaySo.mp3" id="wheel-rotate-music"></audio>
+  </style>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hc-canvas-luckwheel@1.0.2/dist/hc-canvas-luckwheel.min.js"></script>
+  <script src="js/hc-canvas-luckwheel.js"></script>
+  <script>
+    var isPercentage = true;
+
+    const prizes = [
+      {
+        text: "Giảm 20% Dịch Vụ Peel",
+        number: 10,
+        percentpage: 0.1,
+        img: './assests/gifts/Voucher giảm 20_ peel da.png'
+      },
+      {
+        text: "Túi Tote",
+        number: 10,
+        percentpage: 0.1,
+        img: './assests/gifts/Túi Tote.png'
+      },
+      {
+        text: "Túi Sáp 100gram",
+        number: 10,
+        percentpage: 0.1,
+        img: './assests/gifts/Túi sáp 100gr.png'
+      },
+      {
+        text: "Discount 50% Peel",
+        number: 10,
+        percentpage: 0.1,
+        img: './assests/gifts/Voucher giảm 50_ peel.png'
+      },
+      {
+        text: "Free 100% Dịch Vụ Da",
+        number: 10,
+        percentpage: 0.05,
+        img: './assests/gifts/Voucher free dịch vụ da.png'
+      },
+      {
+        text: "Triệt Trải Nghiệm 1K",
+        number: 10,
+        percentpage: 0.1,
+        img: './assests/gifts/Triệt trải nghiệm 1K.png'
+      },
+      {
+        text: "Giảm 30% Cấy Trắng Enzyme 5D",
+        number: 10,
+        percentpage: 0.1,
+        img: './assests/gifts/Voucher giảm 30_ cấy trắng 5D.png'
+      },
+      {
+        text: "Túi Tote",
+        number: 10,
+        percentpage: 0.1,
+        img: './assests/gifts/Túi Tote.png'
+      },
+      {
+        text: "1 Buổi Wax Nách Free",
+        number: 10,
+        percentpage: 0.1,
+        img: './assests/gifts/Voucher Wax nách free_1.png'
+      },
+      {
+        text: "Wax 9K",
+        number: 10,
+        percentpage: 0.05,
+        img: './assests/gifts/Voucher wax nách 9K.png'
+      },
+      {
+        text: "Triệt Nách Nữ 499K Nam 899K",
+        number: 10,
+        percentpage: 0.05,
+        img: './assests/gifts/Máy triệt lông.png'
+      },
+      {
+        text: "Giảm 30% Dịch Vụ Da",
+        number: 10,
+        percentpage: 0.05,
+        img: './assests/gifts/Voucher giảm 30_ dịch vụ da.png'
+      },
+    ];
+
+    function openModal(data) {
+      // Cập nhật nội dung modal
+      if (data === null) {
+        document.getElementById("prizeText").textContent = "Chương trình kết thúc: Đã hết phần thưởng!";
+        document.getElementById("prizeImage").src = ""; // Xóa hình ảnh nếu không có phần thưởng
+      } else if (data === "Chúc bạn may mắn lần sau") {
+        document.getElementById("prizeText").textContent = "Bạn không trúng thưởng. Chúc bạn may mắn lần sau!";
+        document.getElementById("prizeImage").src = "../public/assests/sorry.png"; // Hình ảnh không trúng
+      } else {
+        // Nếu trúng thưởng, cập nhật phần thưởng
+        //document.getElementById("prizeText").textContent = data.text;
+        document.getElementById("title").innerHTML = `Bạn đã nhận được\n<p style="margin:0px;color: #fff;
+        font-weight: 900 !important;  font-size: 20px !important;">${data.text}</p>\n<p style="margin:0px";>từ M.I.A rồi, hãy điền thông tin</p><p style="margin:0px";>để nhận quà ngay nhé!</p>`;
+
+        if (data.text == 'Túi Tote' || data.text == 'Túi Sáp 100gram' || data.text == 'Triệt Nách Nữ 499K Nam 899K') {
+          document.getElementById("prizeImage").src = data.img;
+        } else {
+          document.getElementById("prizeImage").classList.add("rotate");
+          document.getElementById("prizeImage").src = data.img;
+        }
+
+      }
+
+      document.getElementById("popupOverlay").style.display = "flex";
+      document.getElementById("content").classList.add("blur");
+      document.getElementById("footer").classList.add("blur");
+    }
+
+    function closeModal() {
+      // Ẩn modal và xóa lớp làm mờ
+      document.getElementById("prizeImage").classList.remove("rotate");
+      document.getElementById("popupOverlay").style.display = "none";
+      document.getElementById("content").classList.remove("blur");
+      document.getElementById("footer").classList.remove("blur");
+
+    }
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      function () {
+        hcLuckywheel.init({
+          id: "luckywheel",
+          config: function (callback) {
+            callback && callback(prizes);
+          },
+          mode: "text",
+          getPrize: function (callback) {
+            var rand = randomIndex(prizes);
+            var chances = rand;
+            callback && callback([rand, chances]);
+          },
+          gotBack: function (data) {
+            confetti({
+              zIndex: 99999,
+              particleCount: 500,
+              startVelocity: 30,
+              spread: 360,
+            });
+            if (data == null) {
+              Swal.fire(
+                'Chương trình kết thúc',
+                'Đã hết phần thưởng',
+                'error'
+              )
+            } else if (data == 'Chúc bạn may mắn lần sau') {
+              Swal.fire(
+                'Bạn không trúng thưởng',
+                data,
+                'error'
+              )
+            } else {
+              openModal(data)
             }
           }
-          if(counter == prizes.length){
-            return null
-          }
-          let rand = Math.random();
-          let prizeIndex = null;
-          console.log(rand);
-          switch (true) {
-            case rand < prizes[4].percentpage:
-              prizeIndex = 4 ;
-              break;
-            case rand < prizes[4].percentpage + prizes[3].percentpage:
-              prizeIndex = 3;
-              break;
-            case rand < prizes[4].percentpage + prizes[3].percentpage + prizes[2].percentpage:
-              prizeIndex = 2;
-              break;
-            case rand < prizes[4].percentpage + prizes[3].percentpage + prizes[2].percentpage + prizes[1].percentpage:
-              prizeIndex = 1;
-              break;  
-            case rand < prizes[4].percentpage + prizes[3].percentpage + prizes[2].percentpage + prizes[1].percentpage  + prizes[0].percentpage:
-              prizeIndex = 0;
-              break;  
-          }
-          if(prizes[prizeIndex].number != 0){
-            prizes[prizeIndex].number = prizes[prizeIndex].number - 1
-            return prizeIndex
-          }else{
-            return randomIndex(prizes)
-          }
-        }else{
-          var counter = 0;
-          for (let i = 0; i < prizes.length; i++) {
-            if(prizes[i].number == 0){
-              counter++
-            }
-          }
-          if(counter == prizes.length){
-            return null
-          }
-          var rand = (Math.random() * (prizes.length)) >>> 0;
-          if(prizes[rand].number != 0){
-            prizes[rand].number = prizes[rand].number - 1
-            return rand
-          }else{
-            return randomIndex(prizes)
+        });
+
+        // Optional: Automatically play background music on page load
+        // Swal.fire(
+        //   {
+        //     title: "Chào mừng </br> các Tân sinh viên </br> Trường Bách Khoa",
+        //     html: "Cùng tham gia vòng quay may mắn để nhận những phần quà giá trị từ FME nhé!",
+        //     confirmButtonText: 'Tham gia ngay'
+        //   }
+        // ).then(() => {
+        //   document.querySelector("#wheel-background-music").play()
+        // })
+      },
+      false
+    );
+
+    function randomIndex(prizes) {
+      console.log(prizes);
+      document.querySelector("#wheel-background-music").pause()
+      document.querySelector("#wheel-rotate-music").play()
+
+      // Check if all prizes are exhausted
+      var exhausted = prizes.every(prize => prize.number === 0);
+      if (exhausted) {
+        return null;
+      }
+
+      if (isPercentage) {
+        let rand = Math.random();
+        let cumulative = 0;
+        let prizeIndex = null;
+
+        for (let i = 0; i < prizes.length; i++) {
+          cumulative += prizes[i].percentpage;
+          if (rand < cumulative) {
+            prizeIndex = i;
+            break;
           }
         }
+
+        // If no prize is selected due to floating point precision, assign the last prize
+        if (prizeIndex === null) {
+          prizeIndex = prizes.length - 1;
+        }
+
+        // Check if the selected prize is still available
+        if (prizes[prizeIndex].number > 0) {
+          prizes[prizeIndex].number -= 1;
+          return prizeIndex;
+        } else {
+          // If the selected prize is exhausted, recursively try again
+          return randomIndex(prizes);
+        }
+      } else {
+        // Random selection without percentage
+        var availablePrizes = prizes.filter(prize => prize.number > 0);
+        if (availablePrizes.length === 0) {
+          return null;
+        }
+        var rand = Math.floor(Math.random() * availablePrizes.length);
+        var selectedPrize = availablePrizes[rand];
+        var prizeIndex = prizes.indexOf(selectedPrize);
+        prizes[prizeIndex].number -= 1;
+        return prizeIndex;
       }
-    </script>
-  </body>
+    }
+  </script>
+
+</body>
+
 </html>
