@@ -6,7 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta property="og:title" content="M.I.A - Thử vận may rinh ngay phần thưởng" />
   <meta property="og:description" content="Nhấn để quay, nhận liền tay quà tặng hấp dẫn cùng M.I.A" />
-  <meta property="og:image" content="https://miawaxing.vn/wp-content/uploads/2022/09/299736667_831246341584784_346590775965623132_n-scaled.jpeg" />
+  <meta property="og:image"
+    content="https://miawaxing.vn/wp-content/uploads/2022/09/299736667_831246341584784_346590775965623132_n-scaled.jpeg" />
   <meta property="og:url" content="https://miawaxing.vn/" />
   <meta property="og:type" content="website" />
   <title>M.I.A - Thử vận may rinh ngay phần thưởng</title>
@@ -168,9 +169,140 @@
       <div class="title">Chúc mừng bạn nhận được</div>
       <div class="prize" id="prizeText"></div>
       <img id="prizeImage" src="" alt="MIA Device">
-      <a href="#" class="btn" onclick="closeModal()">Điền thông tin để nhận quà</a>
+      <a class="btn" onclick="showForm()">Điền thông tin để nhận quà</a>
       <div class="subtitle">Trường hợp xuất hiện 2 giải thưởng cùng mã (code) hoặc<br />mã không hợp lệ, giải thưởng
         sẽ được xem là không hợp lệ.</div>
+      <form
+        action="https://docs.google.com/forms/d/e/1FAIpQLScgNbukrIoPBcyBezZZzxooIhWFuJhP3Eh445JJO2ggVakGiA/formResponse"
+        target="_self" id="bootstrapForm" method="POST" style="display: none;">
+        <fieldset>
+          <h2>ĐIỀN THÔNG TIN NHẬN QUÀ 21.12</h2>
+          <small>
+            Quý khách hàng lưu ý:
+            <ul>
+
+              <li>Phần quà hợp lệ là phần quà được quay 1 lần duy nhất cho mỗi ID khách hàng, M.I.A loại bỏ những
+                phần quà có trùng ID với phần quà đầu tiên mà khách hàng nhận được</li>
+              <li>Phần quà hợp lệ là phần quà có đầy đủ thông tin khách hàng, trong trường hợp chuyên viên M.I.A
+                không thể liên lạc được với khách hàng trúng thưởng bởi nguyên nhân: số điện thoại không chính chủ hoặc
+                không liên lạc được; khách hàng không thể đến nhận trong thời gian quy định; v.v... phần quà sẽ tính là
+                không hợp lệ.</li>
+              <li>Mỗi phần thưởng sẽ có cách thức trao giải và thời hạn sử dụng khác nhau, quý khách vui lòng để ý
+                điện thoại để được chuyên viên M.I.A hướng dẫn nhận thưởng theo đúng quy trình.</li>
+              <li>M.I.A sẽ không giải quyết bất kì phát sinh nào trong quá trình khách hàng tham gia quay thưởng.
+              </li>
+
+            </ul>
+          </small>
+        </fieldset>
+
+        <!-- Name Field -->
+        <fieldset>
+          <legend>TÊN KHÁCH HÀNG</legend>
+          <div class="form-group">
+            <input type="text" name="entry.919986610" placeholder="Nhập tên khách hàng" required>
+            <small>Ví dụ: Nguyễn Thị Kim</small>
+          </div>
+        </fieldset>
+
+        <!-- Date Field -->
+        <fieldset>
+          <legend>NĂM SINH</legend>
+          <div class="form-group">
+            <input type="date" name="entry.471289509" required>
+          </div>
+        </fieldset>
+
+        <!-- Gender Field -->
+        <fieldset>
+          <legend>GIỚI TÍNH</legend>
+          <div class="form-group">
+            <div class="radio">
+              <label><input type="radio" name="entry.680423588" value="NAM" required> NAM</label>
+            </div>
+            <div class="radio">
+              <label><input type="radio" name="entry.680423588" value="NỮ" required> NỮ</label>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- Phone Field -->
+        <fieldset>
+          <legend>SỐ ĐIỆN THOẠI XÁC NHẬN</legend>
+          <div class="form-group">
+            <input type="tel" name="entry.1469647055" placeholder="Nhập số điện thoại" required>
+          </div>
+        </fieldset>
+
+        <!-- Email Field -->
+        <fieldset>
+          <legend>EMAIL (nếu có)</legend>
+          <div class="form-group">
+            <input type="email" name="entry.881129091" placeholder="Nhập email">
+            <small>Hãy điền email để nhận thông báo sớm nhất!</small>
+          </div>
+        </fieldset>
+
+        <!-- Dropdown Field -->
+        <fieldset style="display: none;">
+          <legend for="1922738138">PHẦN QUÀ NHẬN ĐƯỢC</legend>
+          <div class="form-group">
+            <input id="151499827" type="text" name="entry.151499827" class="form-control">
+          </div>
+        </fieldset>
+
+        <!-- Checkbox Field -->
+        <!-- Field type: "checkboxes" id: "118160036" -->
+        <fieldset>
+          <legend for="118160036">BẠN CÓ QUAN TÂM ĐẾN DỊCH VỤ NÀO SAU ĐÂY HAY KHÔNG?</legend>
+          <div class="form-group">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" name="entry.16258585" value="1. Điều trị da mụn / nám / tàn nhang">
+                1. Điều trị da mụn / nám / tàn nhang
+              </label>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" name="entry.16258585" value="2. Wax / Triệt lông">
+                2. Wax / Triệt lông
+              </label>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" name="entry.16258585" value="3. Trẻ hóa căng bóng da mặt">
+                3. Trẻ hóa căng bóng da mặt
+              </label>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" name="entry.16258585" value="4. Massage cổ vai gáy - body">
+                4. Massage cổ vai gáy - body
+              </label>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" name="entry.16258585" value="5. Gội đầu thư giãn - dưỡng sinh">
+                5. Gội đầu thư giãn - dưỡng sinh
+              </label>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" name="entry.16258585" value="6. Xăm chân mày - Khử thâm môi">
+                6. Xăm chân mày - Khử thâm môi
+              </label>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" name="entry.16258585" value="7. Tắm trắng da body">
+                7. Tắm trắng da body
+              </label>
+            </div>
+          </div>
+        </fieldset>
+
+        <button type="submit" class="btn-primary">Submit</button>
+      </form>
     </div>
   </div>
   <!--Giao diện đã có quà rồi -->
