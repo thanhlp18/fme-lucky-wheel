@@ -165,13 +165,17 @@
   <!--Giao diện nhận phần thưởng rồi -->
   <div class="overlay" id="popupOverlay">
     <div class="popup">
-      <img src="./assests/Icon Trúng thưởng.png" alt="🎉" class="win-icon">
-      <div class="title">Chúc mừng bạn nhận được</div>
-      <div class="prize" id="prizeText"></div>
-      <img id="prizeImage" src="" alt="MIA Device">
-      <a class="btn" onclick="showForm()">Điền thông tin để nhận quà</a>
-      <div class="subtitle">Trường hợp xuất hiện 2 giải thưởng cùng mã (code) hoặc<br />mã không hợp lệ, giải thưởng
-        sẽ được xem là không hợp lệ.</div>
+      <div id="popupInformation-1">
+
+        <img src="./assests/Icon Trúng thưởng.png" alt="🎉" class="win-icon">
+        <div class="title">Chúc mừng bạn nhận được</div>
+        <div class="prize" id="prizeText"></div>
+        <img id="prizeImage" src="" alt="MIA Device">
+        <a class="btn" onclick="showForm()">Điền thông tin để nhận quà</a>
+      </div>
+      <div class="subtitle" id="popupInformation-2">Trường hợp xuất hiện 2 giải thưởng cùng mã (code) hoặc<br />mã không
+        hợp lệ, giải thưởng sẽ
+        được xem là không hợp lệ.</div>
       <form
         action="https://docs.google.com/forms/d/e/1FAIpQLScgNbukrIoPBcyBezZZzxooIhWFuJhP3Eh445JJO2ggVakGiA/formResponse"
         target="_self" id="bootstrapForm" method="POST" style="display: none;">
