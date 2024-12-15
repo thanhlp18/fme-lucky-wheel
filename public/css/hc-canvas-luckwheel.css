@@ -510,7 +510,7 @@ body {
   }
 }
 
-@media only screen and (min-width: 712px) and (max-width: 1024px) {
+@media only screen and (min-width: 712px) and (max-width: 1023px) {
   .hc-luckywheel {
     width: 500px;
     height: 500px;
@@ -739,7 +739,7 @@ body {
   }
 }
 
-@media only screen and (min-width: 1025px) {
+@media only screen and (min-width: 1024px) {
   .hc-luckywheel {
     width: 500px;
     height: 500px;
@@ -841,11 +841,10 @@ body {
   }
 
   .footer-title {
-    position: absolute;
-    bottom: 2% !important;
-    width: 30%;
+    position: relative;
+    bottom: 7% !important;
+    width: fit-content;
     margin: auto;
-    left: 34%;
     border-radius: 4px;
     text-align: center;
     font-family: "Footer", sans-serif;
@@ -853,6 +852,7 @@ body {
     font-size: 20px;
     font-weight: 500;
     background-color: #FAC944;
+    padding: 0px 6px;
   }
 
   .hc-luckywheel-pointer {
