@@ -178,12 +178,8 @@
   }
 
   function eGot() {
-    if (optsPrize.chances == null) {
-      return fnGotBack(null);
-    } else {
       removeClass(btn, "disabled");
       return fnGotBack(prizes[optsPrize.prizeId]);
-    }
   }
 
   /**

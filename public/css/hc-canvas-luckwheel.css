@@ -216,10 +216,22 @@ body {
     margin-bottom: 8px;
   }
 
-  .popup .title br {
+  .popup .titleOutOfTurn br {
     font-size: 1px;
   }
 
+
+  .popup .titleOutOfTurn {
+    font-size: 18px;
+    font-family: "Main Font", sans-serif;
+    color: #fff;
+    font-weight: lighter;
+    margin-bottom: 8px;
+  }
+
+  .popup .title br {
+    font-size: 1px;
+  }
   .popup .prize {
     font-size: 28px;
     font-family: "Main Font", sans-serif;
@@ -294,7 +306,7 @@ body {
     height: 280px;
     /* Kích thước cố định cho chiều cao */
     border-radius: inherit;
-    transition: transform 15.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition: transform 1s cubic-bezier(0.25, 0.8, 0.25, 1);
   }
 
   .hc-luckywheel-item img {
@@ -343,7 +355,7 @@ body {
 
   .footer-title {
     position: relative;
-    bottom: 15%;
+    bottom: 10%;
     width: fit-content;
     margin: auto;
     border-radius: 4px;
@@ -451,7 +463,7 @@ body {
     height: 280px;
     /* Kích thước cố định cho chiều cao */
     border-radius: inherit;
-    transition: transform 15.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition: transform 1s cubic-bezier(0.25, 0.8, 0.25, 1);
   }
 
   .popup .subtitle {
@@ -600,7 +612,7 @@ body {
     /* Kích thước cố định cho chiều cao */
     border-radius: inherit;
     background-clip: padding-box;
-    transition: transform 15.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition: transform 1s cubic-bezier(0.25, 0.8, 0.25, 1);
   }
 
   .wheel {
@@ -668,6 +680,18 @@ body {
     font-size: 1px;
   }
 
+  .popup .titleOutOfTurn {
+    font-size: 30px;
+    font-family: "Main Font", sans-serif;
+    color: #fff;
+    font-weight: lighter;
+    margin-bottom: 8px;
+  }
+
+  .popup .titleOutOfTurn br {
+    font-size: 1px;
+  }
+
   .popup .subtitle {
     position: relative;
     bottom: -10% !important;
@@ -695,7 +719,12 @@ body {
     margin: 0px auto;
     display: block;
   }
-
+  .popup #prizeImageOutOfTurn{
+    max-width: 300px;
+    max-height: 400px;
+    margin: 0px auto;
+    display: block;
+  }
   .popup .info {
     font-size: 14px;
     color: #555;
@@ -827,7 +856,7 @@ body {
     /* Kích thước cố định cho chiều cao */
     border-radius: inherit;
     background-clip: padding-box;
-    transition: transform 15.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition: transform 1s cubic-bezier(0.25, 0.8, 0.25, 1);
   }
 
   .wheel {
@@ -893,7 +922,17 @@ body {
   .popup .title br {
     font-size: 1px;
   }
+  .popup .titleOutOfTurn {
+    font-size: 26px;
+    font-family: "Main Font", sans-serif;
+    color: #fff;
+    font-weight: lighter;
+    margin-bottom: 8px;
+  }
 
+  .popup .titleOutOfTurn br {
+    font-size: 1px;
+  }
   .popup .subtitle {
     position: relative;
     bottom: -6% !important;
@@ -921,7 +960,12 @@ body {
     margin: 0px auto;
     display: block;
   }
-
+  .popup #prizeImageOutOfTurn {
+    max-width: 200px;
+    max-height: 300px;
+    margin: 0px auto;
+    display: block;
+  }
   .popup .info {
     font-size: 14px;
     color: #555;
@@ -962,6 +1006,12 @@ body {
     justify-content: center;
     flex-direction: column;
     margin-top: 32px;
+  }
+  .hc-luckywheel {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-45%) translateY(35%);
   }
 }
 

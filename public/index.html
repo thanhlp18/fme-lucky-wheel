@@ -50,24 +50,24 @@
     NHANH TAY LẤY NGAY QUÀ TẶNG SỐ LƯỢNG CÓ HẠN CÙNG M.I.A
   </h2>
   <!--Giao diện nhận phần thưởng rồi -->
-  <!-- <div class="overlay" id="popupOverlay">
-      <div class="popup">
-        <img src="./assests/Icon Trúng thưởng.png" alt="🎉" class="win-icon">
-        <div class="title">Chúc mừng bạn nhận được</div>
-        <div class="prize" id="prizeText"></div>
-        <img id="prizeImage" src="" alt="MIA Device">
-        <a href="#" class="btn" onclick="closeModal()">Điền thông tin để nhận quà</a>
-        <div class="subtitle">Trường hợp xuất hiện 2 giải thưởng cùng mã (code) hoặc<br />mã không hợp lệ, giải thưởng
-          sẽ được xem là không hợp lệ.</div>
-      </div>
-    </div> -->
-  <!--Giao diện đã có quà rồi -->
-
   <div class="overlay" id="popupOverlay">
     <div class="popup">
-      <img src="./assests/Icon hết lượt quay.png" alt="🎉" class="win-icon">
-      <div class="title" id="title"></div>
+      <img src="./assests/Icon Trúng thưởng.png" alt="🎉" class="win-icon">
+      <div class="title">Chúc mừng bạn nhận được</div>
+      <div class="prize" id="prizeText"></div>
       <img id="prizeImage" src="" alt="MIA Device">
+      <a href="#" class="btn" onclick="closeModal()">Điền thông tin để nhận quà</a>
+      <div class="subtitle">Trường hợp xuất hiện 2 giải thưởng cùng mã (code) hoặc<br />mã không hợp lệ, giải thưởng
+        sẽ được xem là không hợp lệ.</div>
+    </div>
+  </div>
+  <!--Giao diện đã có quà rồi -->
+
+  <div class="overlay" id="popupOverlayOutOfTurn">
+    <div class="popup">
+      <img src="./assests/Icon hết lượt quay.png" alt="🎉" class="win-icon">
+      <div class="title" id="titleOutOfTurn"></div>
+      <img id="prizeImageOutOfTurn" src="" alt="MIA Device">
       <a class="btn" onclick="closeModal()">Điền thông tin để nhận quà</a>
       <div class="subtitle">Trường hợp xuất hiện 2 giải thưởng cùng mã (code) hoặc<br />mã không hợp lệ, giải thưởng
         sẽ được xem là không hợp lệ.</div>
@@ -87,73 +87,73 @@
     const prizes = [
       {
         text: "Giảm 20% Dịch Vụ Peel",
-        number: 10,
+        number: 1,
         percentpage: 0.1,
         img: './assests/gifts/Voucher giảm 20_ peel da.png'
       },
       {
         text: "Túi Tote",
-        number: 10,
+        number: 1,
         percentpage: 0.1,
         img: './assests/gifts/Túi Tote.png'
       },
       {
         text: "Túi Sáp 100gram",
-        number: 10,
+        number: 1,
         percentpage: 0.1,
         img: './assests/gifts/Túi sáp 100gr.png'
       },
       {
         text: "Discount 50% Peel",
-        number: 10,
+        number: 1,
         percentpage: 0.1,
         img: './assests/gifts/Voucher giảm 50_ peel.png'
       },
       {
         text: "Free 100% Dịch Vụ Da",
-        number: 10,
+        number: 1,
         percentpage: 0.05,
         img: './assests/gifts/Voucher free dịch vụ da.png'
       },
       {
         text: "Triệt Trải Nghiệm 1K",
-        number: 10,
+        number: 1,
         percentpage: 0.1,
         img: './assests/gifts/Triệt trải nghiệm 1K.png'
       },
       {
         text: "Giảm 30% Cấy Trắng Enzyme 5D",
-        number: 10,
+        number: 1,
         percentpage: 0.1,
         img: './assests/gifts/Voucher giảm 30_ cấy trắng 5D.png'
       },
       {
         text: "Túi Tote",
-        number: 10,
+        number: 1,
         percentpage: 0.1,
         img: './assests/gifts/Túi Tote.png'
       },
       {
         text: "1 Buổi Wax Nách Free",
-        number: 10,
+        number: 1,
         percentpage: 0.1,
         img: './assests/gifts/Voucher Wax nách free_1.png'
       },
       {
         text: "Wax 9K",
-        number: 10,
+        number: 1,
         percentpage: 0.05,
         img: './assests/gifts/Voucher wax nách 9K.png'
       },
       {
         text: "Triệt Nách Nữ 499K Nam 899K",
-        number: 10,
+        number: 1,
         percentpage: 0.05,
         img: './assests/gifts/Máy triệt lông.png'
       },
       {
         text: "Giảm 30% Dịch Vụ Da",
-        number: 10,
+        number: 1,
         percentpage: 0.05,
         img: './assests/gifts/Voucher giảm 30_ dịch vụ da.png'
       },
@@ -161,16 +161,22 @@
 
     function openModal(data) {
       // Cập nhật nội dung modal
-      if (data === null) {
-        document.getElementById("prizeText").textContent = "Chương trình kết thúc: Đã hết phần thưởng!";
-        document.getElementById("prizeImage").src = ""; // Xóa hình ảnh nếu không có phần thưởng
-      } else if (data === "Chúc bạn may mắn lần sau") {
-        document.getElementById("prizeText").textContent = "Bạn không trúng thưởng. Chúc bạn may mắn lần sau!";
-        document.getElementById("prizeImage").src = "../public/assests/sorry.png"; // Hình ảnh không trúng
-      } else {
+      if (data.number + 1 === 0) {
+        document.getElementById("titleOutOfTurn").innerHTML = `Bạn đã nhận được\n<p class="product-name">${data.text}</p>\n<p style="margin:0px";>từ M.I.A rồi, hãy điền thông tin</p><p style="margin:0px";>để nhận quà ngay nhé!</p>`;
+        if (data.text == 'Túi Tote' || data.text == 'Túi Sáp 100gram' || data.text == 'Triệt Nách Nữ 499K Nam 899K') {
+          document.getElementById("prizeImageOutOfTurn").src = data.img;
+        } else {
+          document.getElementById("prizeImageOutOfTurn").classList.add("rotate");
+          document.getElementById("prizeImageOutOfTurn").src = data.img;
+        }
+
+        document.getElementById("popupOverlayOutOfTurn").style.display = "flex";
+        document.getElementById("content").classList.add("blur");
+        document.getElementById("footer").classList.add("blur");
+      }
+      else {
         // Nếu trúng thưởng, cập nhật phần thưởng
-        //document.getElementById("prizeText").textContent = data.text;
-        document.getElementById("title").innerHTML = `Bạn đã nhận được\n<p class="product-name">${data.text}</p>\n<p style="margin:0px";>từ M.I.A rồi, hãy điền thông tin</p><p style="margin:0px";>để nhận quà ngay nhé!</p>`;
+        document.getElementById("prizeText").textContent = data.text;
 
         if (data.text == 'Túi Tote' || data.text == 'Túi Sáp 100gram' || data.text == 'Triệt Nách Nữ 499K Nam 899K') {
           document.getElementById("prizeImage").src = data.img;
@@ -179,17 +185,19 @@
           document.getElementById("prizeImage").src = data.img;
         }
 
+        document.getElementById("popupOverlay").style.display = "flex";
+        document.getElementById("content").classList.add("blur");
+        document.getElementById("footer").classList.add("blur");
       }
 
-      document.getElementById("popupOverlay").style.display = "flex";
-      document.getElementById("content").classList.add("blur");
-      document.getElementById("footer").classList.add("blur");
     }
 
     function closeModal() {
       // Ẩn modal và xóa lớp làm mờ
       document.getElementById("prizeImage").classList.remove("rotate");
+      document.getElementById("prizeImageOutOfTurn").classList.remove("rotate");
       document.getElementById("popupOverlay").style.display = "none";
+      document.getElementById("popupOverlayOutOfTurn").style.display = "none";
       document.getElementById("content").classList.remove("blur");
       document.getElementById("footer").classList.remove("blur");
 
@@ -216,21 +224,7 @@
               startVelocity: 30,
               spread: 360,
             });
-            if (data == null) {
-              Swal.fire(
-                'Chương trình kết thúc',
-                'Đã hết phần thưởng',
-                'error'
-              )
-            } else if (data == 'Chúc bạn may mắn lần sau') {
-              Swal.fire(
-                'Bạn không trúng thưởng',
-                data,
-                'error'
-              )
-            } else {
-              openModal(data)
-            }
+            openModal(data)
           }
         });
 
@@ -249,15 +243,11 @@
     );
 
     function randomIndex(prizes) {
-      console.log(prizes);
       document.querySelector("#wheel-background-music").pause()
       document.querySelector("#wheel-rotate-music").play()
 
       // Check if all prizes are exhausted
-      var exhausted = prizes.every(prize => prize.number === 0);
-      if (exhausted) {
-        return null;
-      }
+
 
       if (isPercentage) {
         let rand = Math.random();
@@ -273,17 +263,15 @@
         }
 
         // If no prize is selected due to floating point precision, assign the last prize
-        if (prizeIndex === null) {
-          prizeIndex = prizes.length - 1;
-        }
-
+      
         // Check if the selected prize is still available
         if (prizes[prizeIndex].number > 0) {
           prizes[prizeIndex].number -= 1;
           return prizeIndex;
         } else {
-          // If the selected prize is exhausted, recursively try again
-          return randomIndex(prizes);
+          prizes[prizeIndex].number = 0
+          prizes[prizeIndex].number -= 1;
+          return prizeIndex
         }
       } else {
         // Random selection without percentage
@@ -297,7 +285,6 @@
         prizes[prizeIndex].number -= 1;
 
         return prizeIndex;
-        
 
       }
     }
