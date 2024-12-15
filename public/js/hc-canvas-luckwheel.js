@@ -255,8 +255,8 @@
 })();
 // Xử lý việc quay vòng quay
 function rotateWheel() {
-  var spins = Math.floor(Math.random() * 5000 + 2000); // Random số lần quay
+  var spins = Math.floor(Math.random() * 5000 + 12000); // Random số lần quay
   var rotation = spins + 'deg'; // Tính toán góc quay
-  canvas.style.transition = 'transform 6s ease-out';
+  canvas.style.transition = 'transform 12s ease-out';
   canvas.style.transform = 'rotate(' + rotation + ')';
 }

@@ -294,7 +294,7 @@ body {
     height: 280px;
     /* Kích thước cố định cho chiều cao */
     border-radius: inherit;
-    transition: transform 2s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition: transform 24s cubic-bezier(0.25, 0.8, 0.25, 1);
   }
 
   .hc-luckywheel-item img {
@@ -342,12 +342,11 @@ body {
   }
 
   .footer-title {
-    position: absolute;
-    bottom: 2%;
-    width: 90%;
+    position: relative;
+    bottom: 15%;
+    width: fit-content;
     margin: auto;
 
-    left: 5%;
     border-radius: 4px;
     text-align: center;
     font-family: "Footer", sans-serif;
@@ -453,7 +452,7 @@ body {
     height: 280px;
     /* Kích thước cố định cho chiều cao */
     border-radius: inherit;
-    transition: transform 2s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition: transform 24s cubic-bezier(0.25, 0.8, 0.25, 1);
   }
 
   .popup .subtitle {
@@ -468,16 +467,20 @@ body {
     font-weight: lighter;
 
   }
+  .wheel-title {
+    padding: 0 4px;
+    font-size: 20px;
+    margin-top: 80px;
+  }
 }
 
 @media only screen and (min-width: 310px) and (min-height: 915px) {
   .footer-title {
-    position: absolute;
-    bottom: 10%;
+    position: relative;
+    bottom: 0%;
     width: fit-content;
     margin: auto;
     padding: 4px;
-    left: 12%;
     border-radius: 4px;
     text-align: center;
     font-family: "Footer", sans-serif;
@@ -485,6 +488,11 @@ body {
     font-size: 14px;
     font-weight: 500;
     background-color: #FAC944;
+  }
+  .wheel-title {
+    padding: 0 4px;
+    font-size: 20px;
+    margin-top: 80px;
   }
 
   .popup .subtitle {
@@ -501,7 +509,7 @@ body {
   }
 }
 
-@media only screen and (min-width: 768px) and (max-width: 1024px) {
+@media only screen and (min-width: 712px) and (max-width: 1024px) {
   .hc-luckywheel {
     width: 500px;
     height: 500px;
@@ -591,7 +599,7 @@ body {
     /* Kích thước cố định cho chiều cao */
     border-radius: inherit;
     background-clip: padding-box;
-    transition: transform 2s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition: transform 24s cubic-bezier(0.25, 0.8, 0.25, 1);
   }
 
   .wheel {
@@ -606,7 +614,7 @@ body {
 
   .footer-title {
     position: absolute;
-    bottom: 0%;
+    bottom: 5% !important;
     width: 90%;
     margin: auto;
 
@@ -818,7 +826,7 @@ body {
     /* Kích thước cố định cho chiều cao */
     border-radius: inherit;
     background-clip: padding-box;
-    transition: transform 2s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition: transform 24s cubic-bezier(0.25, 0.8, 0.25, 1);
   }
 
   .wheel {
