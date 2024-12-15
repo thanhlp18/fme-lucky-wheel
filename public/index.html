@@ -165,7 +165,7 @@
   <!--Giao diện nhận phần thưởng rồi -->
   <div class="overlay" id="popupOverlay">
     <div class="popup">
-      <div id="popupInformation-1">
+      <div id="popupInformation-1-1">
 
         <img src="./assests/Icon Trúng thưởng.png" alt="🎉" class="win-icon">
         <div class="title">Chúc mừng bạn nhận được</div>
@@ -173,12 +173,12 @@
         <img id="prizeImage" src="" alt="MIA Device">
         <a class="btn" onclick="showForm()">Điền thông tin để nhận quà</a>
       </div>
-      <div class="subtitle" id="popupInformation-2">Trường hợp xuất hiện 2 giải thưởng cùng mã (code) hoặc<br />mã không
+      <div class="subtitle" id="popupInformation-1-2">Trường hợp xuất hiện 2 giải thưởng cùng mã (code) hoặc<br />mã không
         hợp lệ, giải thưởng sẽ
         được xem là không hợp lệ.</div>
       <form
         action="https://docs.google.com/forms/d/e/1FAIpQLScgNbukrIoPBcyBezZZzxooIhWFuJhP3Eh445JJO2ggVakGiA/formResponse"
-        target="_self" id="bootstrapForm" method="POST" style="display: none;">
+        target="_self" id="bootstrapForm-1" method="POST" style="display: none;">
         <fieldset>
           <h2>ĐIỀN THÔNG TIN NHẬN QUÀ 21.12</h2>
           <small>
@@ -251,7 +251,7 @@
         <fieldset style="display: none;">
           <legend for="1922738138">PHẦN QUÀ NHẬN ĐƯỢC</legend>
           <div class="form-group">
-            <input id="151499827" type="text" name="entry.151499827" class="form-control">
+            <input id="151499827-1" type="text" name="entry.151499827" class="form-control">
           </div>
         </fieldset>
 
@@ -323,19 +323,19 @@
   </div> -->
   <div class="overlay" id="popupOverlayOutOfTurn">
     <div class="popup">
-      <div id="popupInformation-1">
+      <div id="popupInformation-2-1">
         <img src="./assests/Icon hết lượt quay.png" alt="🎉" class="win-icon">
         <div class="title" id="titleOutOfTurn"></div>
         <img id="prizeImageOutOfTurn" src="" alt="MIA Device">
         <a class="btn" onclick="showForm()">Điền thông tin để nhận quà</a>
 
       </div>
-      <div class="subtitle" id="popupInformation-2">Trường hợp xuất hiện 2 giải thưởng cùng mã (code) hoặc<br />mã không
+      <div class="subtitle" id="popupInformation-2-2">Trường hợp xuất hiện 2 giải thưởng cùng mã (code) hoặc<br />mã không
         hợp lệ, giải thưởng sẽ
         được xem là không hợp lệ.</div>
       <form
         action="https://docs.google.com/forms/d/e/1FAIpQLScgNbukrIoPBcyBezZZzxooIhWFuJhP3Eh445JJO2ggVakGiA/formResponse"
-        target="_self" id="bootstrapForm" method="POST" style="display: none;">
+        target="_self" id="bootstrapForm-2" method="POST" style="display: none;">
         <fieldset>
           <h2>ĐIỀN THÔNG TIN NHẬN QUÀ 21.12</h2>
           <small>
@@ -408,7 +408,7 @@
         <fieldset style="display: none;">
           <legend for="1922738138">PHẦN QUÀ NHẬN ĐƯỢC</legend>
           <div class="form-group">
-            <input id="151499827" type="text" name="entry.151499827" class="form-control">
+            <input id="151499827-2" type="text" name="entry.151499827" class="form-control">
           </div>
         </fieldset>
 
@@ -566,7 +566,8 @@
       const localData = JSON.parse(localStorage.getItem("prize"));
       if (localData) {
         document.getElementById("titleOutOfTurn").innerHTML = `Bạn đã nhận được\n<p class="product-name">${localData?.text}</p>\n<p style="margin:0px";>từ M.I.A rồi, hãy điền thông tin</p><p style="margin:0px";>để nhận quà ngay nhé!</p>`;
-        document.getElementById('151499827').value = localData?.text;
+        document.getElementById('151499827-2').value = localData?.text;
+        console.log(localData?.text);
         if (localData?.text == 'Túi Tote' || localData?.text == 'Túi Sáp 100gram' || localData?.text == 'Triệt Nách Nữ 499K Nam 899K') {
           document.getElementById("prizeImageOutOfTurn").src = localData?.img;
         } else {
@@ -582,7 +583,7 @@
         // Nếu trúng thưởng, cập nhật phần thưởng
         document.getElementById("prizeText").textContent = data.text;
         localStorage.setItem("prize", JSON.stringify(data));
-        document.getElementById('151499827').value = data?.text;
+        document.getElementById('151499827-1').value = data?.text;
         if (data.text == 'Túi Tote' || data.text == 'Túi Sáp 100gram' || data.text == 'Triệt Nách Nữ 499K Nam 899K') {
           document.getElementById("prizeImage").src = data.img;
         } else {
