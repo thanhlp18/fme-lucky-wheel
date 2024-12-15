@@ -14,6 +14,113 @@
       left: 50%;
       transform: translateX(-50%) translateY(35%);
     }
+
+    /* Form Container */
+    form {
+      max-width: 600px;
+      height: 80vh;
+      overflow-y: auto;
+      margin: 50px auto;
+      padding: 20px 30px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+      text-align: left;
+      font-family: "Main Font", sans-serif;
+
+    }
+
+    h2 {
+      font-size: 1.5em;
+      font-weight: 500;
+      color: #202124;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    small {
+      display: block;
+      font-size: 0.9em;
+      color: #5f6368;
+      margin-bottom: 10px;
+    }
+
+    fieldset {
+      border: none;
+      margin-bottom: 20px;
+      padding: 0;
+    }
+
+    legend {
+      font-size: 1em;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 1em;
+      color: #202124;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="date"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #dadce0;
+      border-radius: 4px;
+      font-size: 1em;
+      background-color: #fff;
+      color: #202124;
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    input[type="radio"],
+    input[type="checkbox"] {
+      margin-right: 10px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .radio,
+    .checkbox {
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+
+    button[type="submit"] {
+      background-color: #4285f4;
+      color: white;
+      font-size: 1em;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #357ae8;
+    }
+
+    ul {
+      padding-left: 20px;
+      color: #5f6368;
+      font-size: 0.9em;
+    }
+
+    ul li {
+      margin-bottom: 5px;
+    }
   </style>
 </head>
 
@@ -63,7 +170,7 @@
   </div>
   <!--Giao diện đã có quà rồi -->
 
-  <div class="overlay" id="popupOverlayOutOfTurn">
+  <!-- <div class="overlay" id="popupOverlayOutOfTurn">
     <div class="popup">
       <img src="./assests/Icon hết lượt quay.png" alt="🎉" class="win-icon">
       <div class="title" id="titleOutOfTurn"></div>
@@ -72,15 +179,169 @@
       <div class="subtitle">Trường hợp xuất hiện 2 giải thưởng cùng mã (code) hoặc<br />mã không hợp lệ, giải thưởng
         sẽ được xem là không hợp lệ.</div>
     </div>
+  </div> -->
+  <div class="overlay" id="popupOverlayOutOfTurn">
+    <div class="popup">
+      <div id="popupInformation-1">
+        <img src="./assests/Icon hết lượt quay.png" alt="🎉" class="win-icon">
+        <div class="title" id="titleOutOfTurn"></div>
+        <img id="prizeImageOutOfTurn" src="" alt="MIA Device">
+        <a class="btn" onclick="showForm()">Điền thông tin để nhận quà</a>
+
+      </div>
+      <div class="subtitle" id="popupInformation-2">Trường hợp xuất hiện 2 giải thưởng cùng mã (code) hoặc<br />mã không
+        hợp lệ, giải thưởng sẽ
+        được xem là không hợp lệ.</div>
+      <form
+        action="https://docs.google.com/forms/d/e/1FAIpQLScgNbukrIoPBcyBezZZzxooIhWFuJhP3Eh445JJO2ggVakGiA/formResponse"
+        target="_self" id="bootstrapForm" method="POST" style="display: none;">
+        <fieldset>
+          <h2>ĐIỀN THÔNG TIN NHẬN QUÀ 21.12</h2>
+          <small>
+            Quý khách hàng lưu ý:
+            <ul>
+
+              <li>Phần quà hợp lệ là phần quà được quay 1 lần duy nhất cho mỗi ID khách hàng, M.I.A loại bỏ những
+                phần quà có trùng ID với phần quà đầu tiên mà khách hàng nhận được</li>
+              <li>Phần quà hợp lệ là phần quà có đầy đủ thông tin khách hàng, trong trường hợp chuyên viên M.I.A
+                không thể liên lạc được với khách hàng trúng thưởng bởi nguyên nhân: số điện thoại không chính chủ hoặc
+                không liên lạc được; khách hàng không thể đến nhận trong thời gian quy định; v.v... phần quà sẽ tính là
+                không hợp lệ.</li>
+              <li>Mỗi phần thưởng sẽ có cách thức trao giải và thời hạn sử dụng khác nhau, quý khách vui lòng để ý
+                điện thoại để được chuyên viên M.I.A hướng dẫn nhận thưởng theo đúng quy trình.</li>
+              <li>M.I.A sẽ không giải quyết bất kì phát sinh nào trong quá trình khách hàng tham gia quay thưởng.
+              </li>
+
+            </ul>
+          </small>
+        </fieldset>
+
+        <!-- Name Field -->
+        <fieldset>
+          <legend>TÊN KHÁCH HÀNG</legend>
+          <div class="form-group">
+            <input type="text" name="entry.919986610" placeholder="Nhập tên khách hàng" required>
+            <small>Ví dụ: Nguyễn Thị Kim</small>
+          </div>
+        </fieldset>
+
+        <!-- Date Field -->
+        <fieldset>
+          <legend>NĂM SINH</legend>
+          <div class="form-group">
+            <input type="date" name="entry.471289509" required>
+          </div>
+        </fieldset>
+
+        <!-- Gender Field -->
+        <fieldset>
+          <legend>GIỚI TÍNH</legend>
+          <div class="form-group">
+            <div class="radio">
+              <label><input type="radio" name="entry.680423588" value="NAM" required> NAM</label>
+            </div>
+            <div class="radio">
+              <label><input type="radio" name="entry.680423588" value="NỮ" required> NỮ</label>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- Phone Field -->
+        <fieldset>
+          <legend>SỐ ĐIỆN THOẠI XÁC NHẬN</legend>
+          <div class="form-group">
+            <input type="tel" name="entry.1469647055" placeholder="Nhập số điện thoại" required>
+          </div>
+        </fieldset>
+
+        <!-- Email Field -->
+        <fieldset>
+          <legend>EMAIL (nếu có)</legend>
+          <div class="form-group">
+            <input type="email" name="entry.881129091" placeholder="Nhập email">
+            <small>Hãy điền email để nhận thông báo sớm nhất!</small>
+          </div>
+        </fieldset>
+
+        <!-- Dropdown Field -->
+        <fieldset style="display: none;">
+          <legend for="1922738138">PHẦN QUÀ NHẬN ĐƯỢC</legend>
+          <div class="form-group">
+            <input id="151499827" type="text" name="entry.151499827" class="form-control">
+          </div>
+        </fieldset>
+
+        <!-- Checkbox Field -->
+        <!-- Field type: "checkboxes" id: "118160036" -->
+        <fieldset>
+          <legend for="118160036">BẠN CÓ QUAN TÂM ĐẾN DỊCH VỤ NÀO SAU ĐÂY HAY KHÔNG?</legend>
+          <div class="form-group">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" name="entry.16258585" value="1. Điều trị da mụn / nám / tàn nhang">
+                1. Điều trị da mụn / nám / tàn nhang
+              </label>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" name="entry.16258585" value="2. Wax / Triệt lông">
+                2. Wax / Triệt lông
+              </label>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" name="entry.16258585" value="3. Trẻ hóa căng bóng da mặt">
+                3. Trẻ hóa căng bóng da mặt
+              </label>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" name="entry.16258585" value="4. Massage cổ vai gáy - body">
+                4. Massage cổ vai gáy - body
+              </label>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" name="entry.16258585" value="5. Gội đầu thư giãn - dưỡng sinh">
+                5. Gội đầu thư giãn - dưỡng sinh
+              </label>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" name="entry.16258585" value="6. Xăm chân mày - Khử thâm môi">
+                6. Xăm chân mày - Khử thâm môi
+              </label>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" name="entry.16258585" value="7. Tắm trắng da body">
+                7. Tắm trắng da body
+              </label>
+            </div>
+          </div>
+        </fieldset>
+
+        <button type="submit" class="btn-primary">Submit</button>
+      </form>
+
+    </div>
   </div>
+  </div>
+
+
   <audio allow="autoplay" loop src="./assests/nhacNen.mp3" id="wheel-background-music"></audio>
   <audio src="./assests/MIA WAX LÔNG.mp3" id="wheel-rotate-music"></audio>
   </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js"
+    integrity="sha256-2Pjr1OlpZMY6qesJM68t2v39t+lMLvxwpa8QlRjJroA=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/hc-canvas-luckwheel@1.0.2/dist/hc-canvas-luckwheel.min.js"></script>
   <script src="js/hc-canvas-luckwheel.js"></script>
+  <script src="js/form-handler.js" defer></script>
   <script>
     var isPercentage = true;
 
@@ -161,13 +422,15 @@
 
     function openModal(data) {
       // Cập nhật nội dung modal
-      if (data.number + 1 === 0) {
-        document.getElementById("titleOutOfTurn").innerHTML = `Bạn đã nhận được\n<p class="product-name">${data.text}</p>\n<p style="margin:0px";>từ M.I.A rồi, hãy điền thông tin</p><p style="margin:0px";>để nhận quà ngay nhé!</p>`;
-        if (data.text == 'Túi Tote' || data.text == 'Túi Sáp 100gram' || data.text == 'Triệt Nách Nữ 499K Nam 899K') {
-          document.getElementById("prizeImageOutOfTurn").src = data.img;
+      const localData = JSON.parse(localStorage.getItem("prize"));
+      if (localData) {
+        document.getElementById("titleOutOfTurn").innerHTML = `Bạn đã nhận được\n<p class="product-name">${localData?.text}</p>\n<p style="margin:0px";>từ M.I.A rồi, hãy điền thông tin</p><p style="margin:0px";>để nhận quà ngay nhé!</p>`;
+        document.getElementById('151499827').value = localData?.text;
+        if (localData?.text == 'Túi Tote' || localData?.text == 'Túi Sáp 100gram' || localData?.text == 'Triệt Nách Nữ 499K Nam 899K') {
+          document.getElementById("prizeImageOutOfTurn").src = localData?.img;
         } else {
           document.getElementById("prizeImageOutOfTurn").classList.add("rotate");
-          document.getElementById("prizeImageOutOfTurn").src = data.img;
+          document.getElementById("prizeImageOutOfTurn").src = localData?.img;
         }
 
         document.getElementById("popupOverlayOutOfTurn").style.display = "flex";
@@ -177,7 +440,8 @@
       else {
         // Nếu trúng thưởng, cập nhật phần thưởng
         document.getElementById("prizeText").textContent = data.text;
-
+        localStorage.setItem("prize", JSON.stringify(data));
+        document.getElementById('151499827').value = data?.text;
         if (data.text == 'Túi Tote' || data.text == 'Túi Sáp 100gram' || data.text == 'Triệt Nách Nữ 499K Nam 899K') {
           document.getElementById("prizeImage").src = data.img;
         } else {
@@ -263,7 +527,7 @@
         }
 
         // If no prize is selected due to floating point precision, assign the last prize
-      
+
         // Check if the selected prize is still available
         if (prizes[prizeIndex].number > 0) {
           prizes[prizeIndex].number -= 1;
@@ -289,6 +553,7 @@
       }
     }
   </script>
+
 
 </body>
 
