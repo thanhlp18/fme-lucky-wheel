@@ -179,9 +179,7 @@
         được xem là không hợp lệ.</div>
       <form
         action="https://docs.google.com/forms/d/e/1FAIpQLScgNbukrIoPBcyBezZZzxooIhWFuJhP3Eh445JJO2ggVakGiA/formResponse"
-        target="_self" id="bootstrapForm-1" method="POST"
-        style="display: none;"
-        >
+        target="_self" id="bootstrapForm-1" method="POST" style="display: none;">
         <fieldset>
           <h2>ĐIỀN THÔNG TIN NHẬN QUÀ 21.12</h2>
           <small>
@@ -601,13 +599,6 @@
   <script src="js/form-handler.js" defer></script>
   <script>
     var isPercentage = true;
-    // const prizeFetched = await fetch('https://api.jsonbin.io/v3/b/67662338ad19ca34f8de9939/latest', {
-    //         method: 'GET',
-    //         headers: {
-    //             'X-Master-key': "$2a$10$64xklhAsmRUZu55xRZhqVO783BJlU/EmxsnWLzfzwZ1TmQ6kD7fxu"
-    //         }
-    //     }).then(response => response.json())
-    // console.log({prizeFetched});
 
     const prizes = [
       {
@@ -740,15 +731,23 @@
 
     document.addEventListener(
       "DOMContentLoaded",
-      function () {
+      async function () {
+        const prizeFetched = await fetch('https://api.jsonbin.io/v3/b/67662338ad19ca34f8de9939/latest', {
+          method: 'GET',
+          headers: {
+            'X-Master-key': "$2a$10$64xklhAsmRUZu55xRZhqVO783BJlU/EmxsnWLzfzwZ1TmQ6kD7fxu"
+          }
+        }).then(response => response.json()).then(data => data.record).catch(err => { });
+        console.log({ prizeFetched });
+        const initData = prizeFetched ? prizeFetched : prizes;
         hcLuckywheel.init({
           id: "luckywheel",
           config: function (callback) {
-            callback && callback(prizes);
+            callback && callback(initData);
           },
           mode: "text",
           getPrize: function (callback) {
-            var rand = randomIndex(prizes);
+            var rand = randomIndex(initData);
             var chances = rand;
             callback && callback([rand, chances]);
           },
@@ -762,17 +761,6 @@
             openModal(data)
           }
         });
-
-        // Optional: Automatically play background music on page load
-        // Swal.fire(
-        //   {
-        //     title: "Chào mừng </br> các Tân sinh viên </br> Trường Bách Khoa",
-        //     html: "Cùng tham gia vòng quay may mắn để nhận những phần quà giá trị từ FME nhé!",
-        //     confirmButtonText: 'Tham gia ngay'
-        //   }
-        // ).then(() => {
-        //   document.querySelector("#wheel-background-music").play()
-        // })
       },
       false
     );

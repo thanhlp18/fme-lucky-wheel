@@ -1,7 +1,7 @@
 $(document).ready(function() {
     console.log("run ");
 
-    function updateEntry(prize) {
+    function updateEntry(textToCompare) {
         fetch('https://api.jsonbin.io/v3/b/67662338ad19ca34f8de9939/latest', {
             method: 'GET',
             headers: {
@@ -10,9 +10,8 @@ $(document).ready(function() {
         })
             .then(response => response.json())
             .then(data => {
-                console.log('Success:', data);
                 const prizes = data.record;
-                const entryIndex = prizes.findIndex(prize => prize.text === prize);
+                const entryIndex = prizes.findIndex(prize => prize.text === textToCompare);
                 if (entryIndex !== -1) {
                     prizes[entryIndex].number -= 1;
                 }
