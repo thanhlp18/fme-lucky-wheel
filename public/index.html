@@ -601,6 +601,13 @@
   <script src="js/form-handler.js" defer></script>
   <script>
     var isPercentage = true;
+    const prizeFetched = await fetch('https://api.jsonbin.io/v3/b/67662338ad19ca34f8de9939/latest', {
+            method: 'GET',
+            headers: {
+                'X-Master-key': "$2a$10$64xklhAsmRUZu55xRZhqVO783BJlU/EmxsnWLzfzwZ1TmQ6kD7fxu"
+            }
+        }).then(response => response.json())
+    console.log({prizeFetched});
 
     const prizes = [
       {
