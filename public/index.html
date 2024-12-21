@@ -173,12 +173,15 @@
         <img id="prizeImage" src="" alt="MIA Device">
         <a class="btn" onclick="showForm()">Điền thông tin để nhận quà</a>
       </div>
-      <div class="subtitle" id="popupInformation-1-2">Trường hợp xuất hiện 2 giải thưởng cùng mã (code) hoặc<br />mã không
+      <div class="subtitle" id="popupInformation-1-2">Trường hợp xuất hiện 2 giải thưởng cùng mã (code) hoặc<br />mã
+        không
         hợp lệ, giải thưởng sẽ
         được xem là không hợp lệ.</div>
       <form
         action="https://docs.google.com/forms/d/e/1FAIpQLScgNbukrIoPBcyBezZZzxooIhWFuJhP3Eh445JJO2ggVakGiA/formResponse"
-        target="_self" id="bootstrapForm-1" method="POST" style="display: none;">
+        target="_self" id="bootstrapForm-1" method="POST"
+        style="display: none;"
+        >
         <fieldset>
           <h2>ĐIỀN THÔNG TIN NHẬN QUÀ 21.12</h2>
           <small>
@@ -200,112 +203,168 @@
           </small>
         </fieldset>
 
-        <!-- Name Field -->
+
+        <!-- Field type: "short" id: "1399457082" -->
         <fieldset>
-          <legend>TÊN KHÁCH HÀNG</legend>
+          <legend for="1399457082">TÊN KHÁCH HÀNG</legend>
           <div class="form-group">
-            <input type="text" name="entry.919986610" placeholder="Nhập tên khách hàng" required>
-            <small>Ví dụ: Nguyễn Thị Kim</small>
+            <p class="help-block">Ví dụ: Nguyễn Thị Kim</p>
+            <input id="919986610" type="text" name="entry.919986610" class="form-control" required>
           </div>
         </fieldset>
 
-        <!-- Date Field -->
+
+        <!-- Field type: "date" id: "407916102" -->
         <fieldset>
-          <legend>NĂM SINH</legend>
+          <legend for="407916102">NĂM SINH</legend>
           <div class="form-group">
-            <input type="date" name="entry.471289509" required>
+            <input type="date" id="471289509_date_1" placeholder="12/21/2024" class="form-control" required>
           </div>
         </fieldset>
 
-        <!-- Gender Field -->
+
+        <!-- Field type: "choices" id: "70487533" -->
         <fieldset>
-          <legend>GIỚI TÍNH</legend>
+          <legend for="70487533">GIỚI TÍNH</legend>
           <div class="form-group">
+            <p class="help-block">Giới tính được ghi trên giấy tờ tùy thân của bạn</p>
             <div class="radio">
-              <label><input type="radio" name="entry.680423588" value="NAM" required> NAM</label>
+              <label>
+                <input type="radio" name="entry.680423588" value="NAM" required>
+                NAM
+              </label>
             </div>
             <div class="radio">
-              <label><input type="radio" name="entry.680423588" value="NỮ" required> NỮ</label>
+              <label>
+                <input type="radio" name="entry.680423588" value="NỮ" required>
+                NỮ
+              </label>
             </div>
           </div>
         </fieldset>
 
-        <!-- Phone Field -->
+
+        <!-- Field type: "short" id: "1414010662" -->
         <fieldset>
-          <legend>SỐ ĐIỆN THOẠI XÁC NHẬN</legend>
+          <legend for="1414010662">SỐ ĐIỆN THOẠI XÁC NHẬN</legend>
           <div class="form-group">
-            <input type="tel" name="entry.1469647055" placeholder="Nhập số điện thoại" required>
+            <input id="1469647055" type="text" name="entry.1469647055" class="form-control" required>
           </div>
         </fieldset>
 
-        <!-- Email Field -->
+
+        <!-- Field type: "short" id: "517982298" -->
         <fieldset>
-          <legend>EMAIL (nếu có)</legend>
+          <legend for="517982298">EMAIL (nếu có)</legend>
           <div class="form-group">
-            <input type="email" name="entry.881129091" placeholder="Nhập email">
-            <small>Hãy điền email để nhận thông báo sớm nhất!</small>
+            <p class="help-block">Hãy điền email để chuyên viên kiểm tra thông tin của bạn dễ dàng và thông báo nhận
+              thưởng sớm nhất cho bạn nhé!</p>
+            <input id="881129091" type="text" name="entry.881129091" class="form-control">
           </div>
         </fieldset>
 
-        <!-- Dropdown Field -->
-        <fieldset style="display: none;">
+
+        <!-- Field type: "short" id: "1922738138" -->
+        <fieldset hidden>
           <legend for="1922738138">PHẦN QUÀ NHẬN ĐƯỢC</legend>
           <div class="form-group">
             <input id="151499827-1" type="text" name="entry.151499827" class="form-control">
           </div>
         </fieldset>
 
-        <!-- Checkbox Field -->
+
         <!-- Field type: "checkboxes" id: "118160036" -->
         <fieldset>
           <legend for="118160036">BẠN CÓ QUAN TÂM ĐẾN DỊCH VỤ NÀO SAU ĐÂY HAY KHÔNG?</legend>
           <div class="form-group">
             <div class="checkbox">
               <label>
-                <input type="checkbox" name="entry.16258585" value="1. Điều trị da mụn / nám / tàn nhang">
-                1. Điều trị da mụn / nám / tàn nhang
+                <input type="checkbox" name="entry.16258585" value="1. Điều trị da mụn">
+                1. Điều trị da mụn
               </label>
             </div>
             <div class="checkbox">
               <label>
-                <input type="checkbox" name="entry.16258585" value="2. Wax / Triệt lông">
-                2. Wax / Triệt lông
+                <input type="checkbox" name="entry.16258585" value="2. Xóa nám / tàn nhang">
+                2. Xóa nám / tàn nhang
               </label>
             </div>
             <div class="checkbox">
               <label>
-                <input type="checkbox" name="entry.16258585" value="3. Trẻ hóa căng bóng da mặt">
-                3. Trẻ hóa căng bóng da mặt
+                <input type="checkbox" name="entry.16258585" value="3. Wax lông">
+                3. Wax lông
               </label>
             </div>
             <div class="checkbox">
               <label>
-                <input type="checkbox" name="entry.16258585" value="4. Massage cổ vai gáy - body">
-                4. Massage cổ vai gáy - body
+                <input type="checkbox" name="entry.16258585" value="4. Triệt lông">
+                4. Triệt lông
               </label>
             </div>
             <div class="checkbox">
               <label>
-                <input type="checkbox" name="entry.16258585" value="5. Gội đầu thư giãn - dưỡng sinh">
-                5. Gội đầu thư giãn - dưỡng sinh
+                <input type="checkbox" name="entry.16258585" value="5. Massage body nhức mỏi">
+                5. Massage body nhức mỏi
               </label>
             </div>
             <div class="checkbox">
               <label>
-                <input type="checkbox" name="entry.16258585" value="6. Xăm chân mày - Khử thâm môi">
-                6. Xăm chân mày - Khử thâm môi
+                <input type="checkbox" name="entry.16258585" value="6. Gội đầu thư giãn - dưỡng sinh">
+                6. Gội đầu thư giãn - dưỡng sinh
               </label>
             </div>
             <div class="checkbox">
               <label>
-                <input type="checkbox" name="entry.16258585" value="7. Tắm trắng da body">
-                7. Tắm trắng da body
+                <input type="checkbox" name="entry.16258585" value="7. Tắm trắng body">
+                7. Tắm trắng body
               </label>
             </div>
           </div>
         </fieldset>
 
-        <button type="submit" class="btn-primary">Submit</button>
+
+        <!-- Field type: "checkboxes" id: "504332009" -->
+        <fieldset>
+          <legend for="504332009">BẠN BIẾT ĐẾN M.I.A QUA ĐÂU?</legend>
+          <div class="form-group">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" name="entry.1078723396" value="Mạng xã hội (Facebook, Tiktok,...)">
+                Mạng xã hội (Facebook, Tiktok,...)
+              </label>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" name="entry.1078723396" value="Quảng cáo facebook">
+                Quảng cáo facebook
+              </label>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" name="entry.1078723396" value="Bạn bè giới thiệu">
+                Bạn bè giới thiệu
+              </label>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" name="entry.1078723396" value="Chưa nghe qua trước đó">
+                Chưa nghe qua trước đó
+              </label>
+            </div>
+          </div>
+        </fieldset>
+
+        <input type="hidden" name="fvv" value="1">
+        <input type="hidden" name="fbzx" value="-6535336632366687464">
+        <!--
+          CAVEAT: In multipages (multisection) forms, *pageHistory* field tells to google what sections we've currently completed.
+          This usually starts as "0" for the first page, then "0,1" in the second page... up to "0,1,2..N" in n-th page.
+          Keep this in mind if you plan to change this code to recreate any sort of multipage-feature in your exported form.
+          We're setting this to the total number of pages in this form because we're sending all fields from all the section together.
+      -->
+        <input type="hidden" name="pageHistory" value="0">
+
+        <input class="btn btn-primary" type="submit" value="Submit" style="margin: auto; width: 100%;">
       </form>
     </div>
   </div>
@@ -330,7 +389,8 @@
         <a class="btn" onclick="showForm()">Điền thông tin để nhận quà</a>
 
       </div>
-      <div class="subtitle" id="popupInformation-2-2">Trường hợp xuất hiện 2 giải thưởng cùng mã (code) hoặc<br />mã không
+      <div class="subtitle" id="popupInformation-2-2">Trường hợp xuất hiện 2 giải thưởng cùng mã (code) hoặc<br />mã
+        không
         hợp lệ, giải thưởng sẽ
         được xem là không hợp lệ.</div>
       <form
@@ -357,112 +417,168 @@
           </small>
         </fieldset>
 
-        <!-- Name Field -->
+
+        <!-- Field type: "short" id: "1399457082" -->
         <fieldset>
-          <legend>TÊN KHÁCH HÀNG</legend>
+          <legend for="1399457082">TÊN KHÁCH HÀNG</legend>
           <div class="form-group">
-            <input type="text" name="entry.919986610" placeholder="Nhập tên khách hàng" required>
-            <small>Ví dụ: Nguyễn Thị Kim</small>
+            <p class="help-block">Ví dụ: Nguyễn Thị Kim</p>
+            <input id="919986610" type="text" name="entry.919986610" class="form-control" required>
           </div>
         </fieldset>
 
-        <!-- Date Field -->
+
+        <!-- Field type: "date" id: "407916102" -->
         <fieldset>
-          <legend>NĂM SINH</legend>
+          <legend for="407916102">NĂM SINH</legend>
           <div class="form-group">
-            <input type="date" name="entry.471289509" required>
+            <input type="date" id="471289509_date_2" placeholder="12/21/2024" class="form-control" required>
           </div>
         </fieldset>
 
-        <!-- Gender Field -->
+
+        <!-- Field type: "choices" id: "70487533" -->
         <fieldset>
-          <legend>GIỚI TÍNH</legend>
+          <legend for="70487533">GIỚI TÍNH</legend>
           <div class="form-group">
+            <p class="help-block">Giới tính được ghi trên giấy tờ tùy thân của bạn</p>
             <div class="radio">
-              <label><input type="radio" name="entry.680423588" value="NAM" required> NAM</label>
+              <label>
+                <input type="radio" name="entry.680423588" value="NAM" required>
+                NAM
+              </label>
             </div>
             <div class="radio">
-              <label><input type="radio" name="entry.680423588" value="NỮ" required> NỮ</label>
+              <label>
+                <input type="radio" name="entry.680423588" value="NỮ" required>
+                NỮ
+              </label>
             </div>
           </div>
         </fieldset>
 
-        <!-- Phone Field -->
+
+        <!-- Field type: "short" id: "1414010662" -->
         <fieldset>
-          <legend>SỐ ĐIỆN THOẠI XÁC NHẬN</legend>
+          <legend for="1414010662">SỐ ĐIỆN THOẠI XÁC NHẬN</legend>
           <div class="form-group">
-            <input type="tel" name="entry.1469647055" placeholder="Nhập số điện thoại" required>
+            <input id="1469647055" type="text" name="entry.1469647055" class="form-control" required>
           </div>
         </fieldset>
 
-        <!-- Email Field -->
+
+        <!-- Field type: "short" id: "517982298" -->
         <fieldset>
-          <legend>EMAIL (nếu có)</legend>
+          <legend for="517982298">EMAIL (nếu có)</legend>
           <div class="form-group">
-            <input type="email" name="entry.881129091" placeholder="Nhập email">
-            <small>Hãy điền email để nhận thông báo sớm nhất!</small>
+            <p class="help-block">Hãy điền email để chuyên viên kiểm tra thông tin của bạn dễ dàng và thông báo nhận
+              thưởng sớm nhất cho bạn nhé!</p>
+            <input id="881129091" type="text" name="entry.881129091" class="form-control">
           </div>
         </fieldset>
 
-        <!-- Dropdown Field -->
-        <fieldset style="display: none;">
+
+        <!-- Field type: "short" id: "1922738138" -->
+        <fieldset hidden>
           <legend for="1922738138">PHẦN QUÀ NHẬN ĐƯỢC</legend>
           <div class="form-group">
             <input id="151499827-2" type="text" name="entry.151499827" class="form-control">
           </div>
         </fieldset>
 
-        <!-- Checkbox Field -->
+
         <!-- Field type: "checkboxes" id: "118160036" -->
         <fieldset>
           <legend for="118160036">BẠN CÓ QUAN TÂM ĐẾN DỊCH VỤ NÀO SAU ĐÂY HAY KHÔNG?</legend>
           <div class="form-group">
             <div class="checkbox">
               <label>
-                <input type="checkbox" name="entry.16258585" value="1. Điều trị da mụn / nám / tàn nhang">
-                1. Điều trị da mụn / nám / tàn nhang
+                <input type="checkbox" name="entry.16258585" value="1. Điều trị da mụn">
+                1. Điều trị da mụn
               </label>
             </div>
             <div class="checkbox">
               <label>
-                <input type="checkbox" name="entry.16258585" value="2. Wax / Triệt lông">
-                2. Wax / Triệt lông
+                <input type="checkbox" name="entry.16258585" value="2. Xóa nám / tàn nhang">
+                2. Xóa nám / tàn nhang
               </label>
             </div>
             <div class="checkbox">
               <label>
-                <input type="checkbox" name="entry.16258585" value="3. Trẻ hóa căng bóng da mặt">
-                3. Trẻ hóa căng bóng da mặt
+                <input type="checkbox" name="entry.16258585" value="3. Wax lông">
+                3. Wax lông
               </label>
             </div>
             <div class="checkbox">
               <label>
-                <input type="checkbox" name="entry.16258585" value="4. Massage cổ vai gáy - body">
-                4. Massage cổ vai gáy - body
+                <input type="checkbox" name="entry.16258585" value="4. Triệt lông">
+                4. Triệt lông
               </label>
             </div>
             <div class="checkbox">
               <label>
-                <input type="checkbox" name="entry.16258585" value="5. Gội đầu thư giãn - dưỡng sinh">
-                5. Gội đầu thư giãn - dưỡng sinh
+                <input type="checkbox" name="entry.16258585" value="5. Massage body nhức mỏi">
+                5. Massage body nhức mỏi
               </label>
             </div>
             <div class="checkbox">
               <label>
-                <input type="checkbox" name="entry.16258585" value="6. Xăm chân mày - Khử thâm môi">
-                6. Xăm chân mày - Khử thâm môi
+                <input type="checkbox" name="entry.16258585" value="6. Gội đầu thư giãn - dưỡng sinh">
+                6. Gội đầu thư giãn - dưỡng sinh
               </label>
             </div>
             <div class="checkbox">
               <label>
-                <input type="checkbox" name="entry.16258585" value="7. Tắm trắng da body">
-                7. Tắm trắng da body
+                <input type="checkbox" name="entry.16258585" value="7. Tắm trắng body">
+                7. Tắm trắng body
               </label>
             </div>
           </div>
         </fieldset>
 
-        <button type="submit" class="btn-primary">Submit</button>
+
+        <!-- Field type: "checkboxes" id: "504332009" -->
+        <fieldset>
+          <legend for="504332009">BẠN BIẾT ĐẾN M.I.A QUA ĐÂU?</legend>
+          <div class="form-group">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" name="entry.1078723396" value="Mạng xã hội (Facebook, Tiktok,...)">
+                Mạng xã hội (Facebook, Tiktok,...)
+              </label>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" name="entry.1078723396" value="Quảng cáo facebook">
+                Quảng cáo facebook
+              </label>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" name="entry.1078723396" value="Bạn bè giới thiệu">
+                Bạn bè giới thiệu
+              </label>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" name="entry.1078723396" value="Chưa nghe qua trước đó">
+                Chưa nghe qua trước đó
+              </label>
+            </div>
+          </div>
+        </fieldset>
+
+        <input type="hidden" name="fvv" value="1">
+        <input type="hidden" name="fbzx" value="-6535336632366687464">
+        <!--
+          CAVEAT: In multipages (multisection) forms, *pageHistory* field tells to google what sections we've currently completed.
+          This usually starts as "0" for the first page, then "0,1" in the second page... up to "0,1,2..N" in n-th page.
+          Keep this in mind if you plan to change this code to recreate any sort of multipage-feature in your exported form.
+          We're setting this to the total number of pages in this form because we're sending all fields from all the section together.
+      -->
+        <input type="hidden" name="pageHistory" value="0">
+
+        <input class="btn btn-primary" type="submit" value="Submit" style="margin: auto; width: 100%;">
       </form>
 
     </div>

@@ -15,7 +15,7 @@ $(document).ready(function() {
         var extraData = {};
         {
             // Parsing input date id=471289509
-            var dateField = $("#471289509_date").val();
+            var dateField = $("#471289509_date_1").val();
             var timeField = $("#471289509_time").val();
             let d = new Date(dateField);
             if (!isNaN(d.getTime())) {
@@ -53,7 +53,7 @@ $(document).ready(function() {
         var extraData = {};
         {
             // Parsing input date id=471289509
-            var dateField = $("#471289509_date").val();
+            var dateField = $("#471289509_date_2").val();
             var timeField = $("#471289509_time").val();
             let d = new Date(dateField);
             if (!isNaN(d.getTime())) {
