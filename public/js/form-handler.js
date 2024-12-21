@@ -1,6 +1,36 @@
 $(document).ready(function() {
     console.log("run ");
 
+    function updateEntry(prize) {
+        fetch('https://api.jsonbin.io/v3/b/67662338ad19ca34f8de9939/latest', {
+            method: 'GET',
+            headers: {
+                'X-Master-key': "$2a$10$64xklhAsmRUZu55xRZhqVO783BJlU/EmxsnWLzfzwZ1TmQ6kD7fxu"
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                const prizes = data.record;
+                const entryIndex = prizes.findIndex(prize => prize.text === prize);
+                if (entryIndex !== -1) {
+                    prizes[entryIndex].number -= 1;
+                }
+
+                return fetch('https://api.jsonbin.io/v3/b/67662338ad19ca34f8de9939', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Master-key': "$2a$10$64xklhAsmRUZu55xRZhqVO783BJlU/EmxsnWLzfzwZ1TmQ6kD7fxu"
+                    },
+                    body: JSON.stringify(prizes)
+                });
+            })
+            .then(response => response.json())
+            .then(data => console.log('Success:', data))
+            .catch(error => console.error('Error:', error));
+    }
+
     window.showForm = function() {
         $('#bootstrapForm-1').show();
         $('#bootstrapForm-2').show();
@@ -28,6 +58,7 @@ $(document).ready(function() {
                 extraData["entry.471289509_hour"] = values[0];
                 extraData["entry.471289509_minute"] = values[1];
             }
+            updateEntry($("#151499827-1").val())
         }
         $('#bootstrapForm-1').ajaxSubmit({
             data: extraData,
@@ -66,6 +97,7 @@ $(document).ready(function() {
                 extraData["entry.471289509_hour"] = values[0];
                 extraData["entry.471289509_minute"] = values[1];
             }
+            updateEntry($("#151499827-2").val())
         }
         $('#bootstrapForm-2').ajaxSubmit({
             data: extraData,

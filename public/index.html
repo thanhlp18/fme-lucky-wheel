@@ -680,6 +680,12 @@
     function openModal(data) {
       // Cập nhật nội dung modal
       const localData = JSON.parse(localStorage.getItem("prize"));
+      document.getElementById("popupInformation-1-1").style.display = "block";
+      document.getElementById("popupInformation-1-2").style.display = "block";
+      document.getElementById("popupInformation-2-1").style.display = "block";
+      document.getElementById("popupInformation-2-2").style.display = "block";
+      document.getElementById("bootstrapForm-1").style.display = "none";
+      document.getElementById("bootstrapForm-2").style.display = "none";
       if (localData) {
         document.getElementById("titleOutOfTurn").innerHTML = `Bạn đã nhận được\n<p class="product-name">${localData?.text}</p>\n<p style="margin:0px";>từ M.I.A rồi, hãy điền thông tin</p><p style="margin:0px";>để nhận quà ngay nhé!</p>`;
         document.getElementById('151499827-2').value = localData?.text;
