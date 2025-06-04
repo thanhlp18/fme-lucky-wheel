@@ -1,120 +1,121 @@
-$(document).ready(function() {
-    console.log("run ");
-
-    function updateEntry(textToCompare) {
-        fetch('https://api.jsonbin.io/v3/b/67662338ad19ca34f8de9939/latest', {
-            method: 'GET',
-            headers: {
-                'X-Master-key': "$2a$10$64xklhAsmRUZu55xRZhqVO783BJlU/EmxsnWLzfzwZ1TmQ6kD7fxu"
-            }
-        })
-            .then(response => response.json())
-            .then(data => {
-                const prizes = data.record;
-                const entryIndex = prizes.findIndex(prize => prize.text === textToCompare);
-                if (entryIndex !== -1) {
-                    prizes[entryIndex].number -= 1;
-                }
-
-                return fetch('https://api.jsonbin.io/v3/b/67662338ad19ca34f8de9939', {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-Master-key': "$2a$10$64xklhAsmRUZu55xRZhqVO783BJlU/EmxsnWLzfzwZ1TmQ6kD7fxu"
-                    },
-                    body: JSON.stringify(prizes)
-                });
-            })
-            .then(response => response.json())
-            .then(data => console.log('Success:', data))
-            .catch(error => console.error('Error:', error));
+$(document).ready(function () {
+    function updateEntry(text) {
+        const prizes = JSON.parse(JSON.stringify(window.prizes));
+        const index = prizes.findIndex(p => p.text === text);
+        if (index !== -1 && prizes[index].number > 0) {
+            prizes[index].number -= 1;
+            window.prizes = prizes;
+        }
     }
 
-    window.showForm = function() {
+    window.showForm = function () {
         $('#bootstrapForm-1').show();
-        $('#bootstrapForm-2').show();
         $('#popupInformation-1-1').hide();
-        $('#popupInformation-1-2').hide();
-        $('#popupInformation-2-1').hide();
-        $('#popupInformation-2-2').hide();
+        const spinData = JSON.parse(localStorage.getItem('spinData')) || {};
+        const phoneNumber = localStorage.getItem('phoneNumber');
+        if (spinData[phoneNumber]) {
+            $('#919986610').val(spinData[phoneNumber].userName);
+            $('#1469647055').val(phoneNumber);
+        }
     };
 
-    $('#bootstrapForm-1').submit(function(event) {
+    $('#preSpinForm').submit(function (event) {
         event.preventDefault();
-        var extraData = {};
-        {
-            // Parsing input date id=471289509
-            var dateField = $("#471289509_date_1").val();
-            var timeField = $("#471289509_time").val();
-            let d = new Date(dateField);
-            if (!isNaN(d.getTime())) {
-                extraData["entry.471289509_year"] = d.getFullYear();
-                extraData["entry.471289509_month"] = d.getMonth() + 1;
-                extraData["entry.471289509_day"] = d.getUTCDate();
-            }
-            if (timeField && timeField.split(':').length >= 2) {
-                let values = timeField.split(':');
-                extraData["entry.471289509_hour"] = values[0];
-                extraData["entry.471289509_minute"] = values[1];
-            }
-            updateEntry($("#151499827-1").val())
+        const userName = $('#userName').val();
+        const phoneNumber = $('#phoneNumber').val();
+        const spinLimit = parseInt($('#spinLimit').val());
+
+        if (!userName || !phoneNumber || !spinLimit || spinLimit < 1) {
+            Swal.fire({ icon: 'error', title: 'Lỗi', text: 'Vui lòng điền đầy đủ thông tin.' });
+            return;
         }
-        $('#bootstrapForm-1').ajaxSubmit({
-            data: extraData,
-            dataType: 'jsonp',  // This won't really work. It's just to use a GET instead of a POST to allow cookies from different domain.
-            error: function() {
-                // Submit of form should be successful but JSONP callback will fail because Google Forms
-                // does not support it, so this is handled as a failure.
-                closeModal()
-                alert('M.I.A đã nhận được thông tin của bạn.');
-                confetti({
-                    zIndex: 99999,
-                    particleCount: 500,
-                    startVelocity: 30,
-                    spread: 360,
-                });
-                // You can also redirect the user to a custom thank-you page:
-                // window.location = 'http://www.mydomain.com/thankyoupage.html'
-            }
-        });
+        if (!/^[0-9]{10}$/.test(phoneNumber)) {
+            Swal.fire({ icon: 'error', title: 'Lỗi', text: 'Số điện thoại phải có 10 chữ số.' });
+            return;
+        }
+        let spinData = JSON.parse(localStorage.getItem('spinData')) || {};
+        if (spinData[phoneNumber]) {
+            Swal.fire({ icon: 'error', title: 'Lỗi', text: 'Số điện thoại đã được sử dụng.' });
+            return;
+        }
+
+        spinData[phoneNumber] = { spinsLeft: spinLimit, spinLimit: spinLimit, userName: userName };
+        localStorage.setItem('spinData', JSON.stringify(spinData));
+        localStorage.setItem('phoneNumber', phoneNumber);
+        localStorage.setItem('wonPrizes', JSON.stringify([]));
+        $('#preSpinForm').hide();
+        $('#wrapper').show();
     });
-    $('#bootstrapForm-2').submit(function(event) {
+
+    $('#bootstrapForm-1').submit(function (event) {
         event.preventDefault();
-        var extraData = {};
-        {
-            // Parsing input date id=471289509
-            var dateField = $("#471289509_date_2").val();
-            var timeField = $("#471289509_time").val();
-            let d = new Date(dateField);
-            if (!isNaN(d.getTime())) {
-                extraData["entry.471289509_year"] = d.getFullYear();
-                extraData["entry.471289509_month"] = d.getMonth() + 1;
-                extraData["entry.471289509_day"] = d.getUTCDate();
-            }
-            if (timeField && timeField.split(':').length >= 2) {
-                let values = timeField.split(':');
-                extraData["entry.471289509_hour"] = values[0];
-                extraData["entry.471289509_minute"] = values[1];
-            }
-            updateEntry($("#151499827-2").val())
+        const name = $('#919986610').val();
+        const phone = $('#1469647055').val();
+        const date = $('#471289509_date_1').val();
+        const gender = $('input[name="entry.680423588"]:checked').val();
+        if (!name || !phone || !date || !gender) {
+            Swal.fire({ icon: 'error', title: 'Lỗi', text: 'Vui lòng điền đầy đủ các trường bắt buộc.' });
+            return;
         }
-        $('#bootstrapForm-2').ajaxSubmit({
-            data: extraData,
-            dataType: 'jsonp',  // This won't really work. It's just to use a GET instead of a POST to allow cookies from different domain.
-            error: function() {
-                // Submit of form should be successful but JSONP callback will fail because Google Forms
-                // does not support it, so this is handled as a failure.
-                closeModal()
-                alert('M.I.A đã nhận được thông tin của bạn.');
-                confetti({
-                    zIndex: 99999,
-                    particleCount: 500,
-                    startVelocity: 30,
-                    spread: 360,
+        if (!/^[0-9]{10}$/.test(phone)) {
+            Swal.fire({ icon: 'error', title: 'Lỗi', text: 'Số điện thoại phải có 10 chữ số.' });
+            return;
+        }
+        let d = new Date(date);
+        if (isNaN(d.getTime())) {
+            Swal.fire({ icon: 'error', title: 'Lỗi', text: 'Ngày sinh không hợp lệ.' });
+            return;
+        }
+
+        // Add hidden fields for date components
+        $('<input>').attr({ type: 'hidden', name: 'entry.471289509_year', value: d.getFullYear() }).appendTo('#bootstrapForm-1');
+        $('<input>').attr({ type: 'hidden', name: 'entry.471289509_month', value: d.getMonth() + 1 }).appendTo('#bootstrapForm-1');
+        $('<input>').attr({ type: 'hidden', name: 'entry.471289509_day', value: d.getUTCDate() }).appendTo('#bootstrapForm-1');
+
+        // Create a hidden iframe for form submission
+        const iframeId = 'hiddenIframe-' + new Date().getTime(); // Unique ID to avoid conflicts
+        const iframe = $(`<iframe id="${iframeId}" name="${iframeId}" style="display:none;"></iframe>`).appendTo('body');
+
+        // Set the form's target to the iframe
+        $(this).attr('target', iframeId);
+
+        // Submit the form
+        this.submit();
+
+        // Detect when the iframe loads (indicating submission completion)
+        iframe.on('load', function () {
+            setTimeout(() => {
+                closeModal();
+                Swal.fire({
+                    title: 'Thành công',
+                    text: 'M.I.A đã nhận được thông tin của bạn.',
+                    icon: 'success',
+                    timer: 2000,
+                    showConfirmButton: false,
+                }).then(() => {
+                    localStorage.clear(); // Use localStorage.clear() for consistency
+                    let wonPrizes = JSON.parse(localStorage.getItem("wonPrizes")) || [];
+                    wonPrizes.forEach(prize => updateEntry(prize.text));
+                    $('#popupOverlay').hide();
+                    $('#content').removeClass("blur");
+                    $('#bootstrapForm-1').hide();
+                    $('#bootstrapForm-1')[0].reset();
+                    $('#preSpinForm').show();
+                    $('#preSpinForm')[0].reset();
+                    $('#wrapper').hide();
+                    const rotateAudio = document.querySelector('#wheel-rotate-music');
+                    pauseAudio('#wheel-rotate-music');
+                    rotateAudio.currentTime = 0;
+                    confetti({
+                        particleCount: 500,
+                        startVelocity: 30,
+                        spread: 360,
+                    });
+
+                    // Clean up the iframe
+                    iframe.remove();
                 });
-                // You can also redirect the user to a custom thank-you page:
-                // window.location = 'http://www.mydomain.com/thankyoupage.html'
-            }
+            }, 1000);
         });
     });
 });
