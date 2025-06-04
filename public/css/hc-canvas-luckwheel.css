@@ -37,6 +37,39 @@
   box-sizing: border-box;
 }
 
+.main-content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.top-img-content {
+  width: 550px;
+
+}
+
+.bottom-img-content {
+  width: 450px;
+
+}
+
+.bottom-content {
+  display: flex;
+  margin-top: 15px;
+  width: 550px;
+  justify-content: center;
+}
+
+.img-section {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  margin-top: 65px;
+  align-items: end;
+  margin-right: 0px;
+}
+
 .hc-luckywheel ul,
 .hc-luckywheel li {
   margin: 0;
@@ -139,7 +172,6 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin-top: 32px;
 }
 
 .wheel-title {
@@ -232,6 +264,7 @@ body {
   .popup .title br {
     font-size: 1px;
   }
+
   .popup .prize {
     font-size: 28px;
     font-family: "Main Font", sans-serif;
@@ -588,7 +621,7 @@ body {
   }
 
   .bg {
-    background-image: url("../assests/background_tablet.png");
+    background-image: url("../assests/background.png");
     object-fit: scale-down;
     background-size: cover;
     object-position: center !important;
@@ -719,12 +752,14 @@ body {
     margin: 0px auto;
     display: block;
   }
-  .popup #prizeImageOutOfTurn{
+
+  .popup #prizeImageOutOfTurn {
     max-width: 300px;
     max-height: 400px;
     margin: 0px auto;
     display: block;
   }
+
   .popup .info {
     font-size: 14px;
     color: #555;
@@ -776,8 +811,8 @@ body {
 
   .hc-luckywheel-item {
     position: absolute;
-    left: 72%;
-    top: -40px;
+    left: 125px;
+    top: -30px;
     opacity: 1;
 
     color: #000;
@@ -787,29 +822,30 @@ body {
   }
 
   .hc-luckywheel-item span {
-    -webkit-transform-origin: 50% 220px;
-    -ms-transform-origin: 50% 220px;
-    transform-origin: 50% 220px;
-    width: 80px;
-    font-size: 10px;
+    /* -webkit-transform-origin: 50% 220px;
+    -ms-transform-origin: 50% 220px;*/
+    transform-origin: 52% 230px;
+    width: 120px;
+    font-size: 12px;
     font-family: "Main Font", sans-serif;
     font-weight: 600;
+    margin-bottom: 80px;
   }
 
   .hc-luckywheel-item img {
     position: absolute;
     top: 110px;
-    left: 27px;
-    width: 25px;
-    height: 50px;
+    left: 25px;
+    width: 75px;
+    height: 35px;
   }
 
   .hc-luckywheel-btn {
     position: absolute;
-    left: 177px;
-    top: 2px;
-    width: 95px;
-    height: 95px;
+    left: 215px;
+    top: -250px;
+    width: 100px;
+    height: 100px;
     line-height: 25px;
   }
 
@@ -834,10 +870,10 @@ body {
   }
 
   .bg {
-    background-image: url("../assests/background_desktop.png");
+    background-image: url("../assests/background.png");
     background-size: cover;
     object-position: center !important;
-    background-position: center;
+    background-position: bottom;
     background-color: #F4F4F4;
     background-repeat: no-repeat;
     overflow-y: hidden;
@@ -845,14 +881,13 @@ body {
 
   .hc-luckywheel-container {
     will-change: transform;
-    /* Giúp trình duyệt biết trước để tối ưu hóa rendering */
     position: absolute;
-    left: 9%;
-    top: -130px;
+    left: 65px;
+    top: -400px;
     z-index: 40;
-    width: 360px;
+    width: 400px;
     /* Kích thước cố định cho chiều rộng */
-    height: 360px;
+    height: 400px;
     /* Kích thước cố định cho chiều cao */
     border-radius: inherit;
     background-clip: padding-box;
@@ -860,10 +895,9 @@ body {
   }
 
   .wheel {
-    width: 420px;
-    height: 420px;
-    top: -160px;
-    left: 0%;
+    width: 500px;
+    height: 500px;
+    top: -450px;
     position: relative;
     margin: auto;
     z-index: 10;
@@ -886,11 +920,11 @@ body {
 
   .hc-luckywheel-pointer {
     position: absolute;
-    top: -190px;
-    left: 50%;
+    top: -490px;
+    left: 265px;
     width: 40px;
-    height: 80px;
-    transform: translateX(-90%);
+    height: 90px;
+    /* transform: translateX(-10%); */
     background: url('../assests/pointer.png') no-repeat center center;
     background-size: contain;
     z-index: 55;
@@ -899,6 +933,7 @@ body {
   .popup {
     width: 100%;
     height: 100%;
+    margin-top: 50px;
     border-radius: 20px;
     text-align: center;
     position: relative;
@@ -922,6 +957,7 @@ body {
   .popup .title br {
     font-size: 1px;
   }
+
   .popup .titleOutOfTurn {
     font-size: 26px;
     font-family: "Main Font", sans-serif;
@@ -933,6 +969,7 @@ body {
   .popup .titleOutOfTurn br {
     font-size: 1px;
   }
+
   .popup .subtitle {
     position: relative;
     bottom: -6% !important;
@@ -960,12 +997,14 @@ body {
     margin: 0px auto;
     display: block;
   }
+
   .popup #prizeImageOutOfTurn {
     max-width: 200px;
     max-height: 300px;
     margin: 0px auto;
     display: block;
   }
+
   .popup .info {
     font-size: 14px;
     color: #555;
@@ -974,7 +1013,6 @@ body {
 
   .popup .btn {
     display: inline-block;
-    margin-top: 10px;
     background: #F5CB41;
     font-family: "Footer", sans-serif;
     color: #333;
@@ -984,6 +1022,9 @@ body {
     text-decoration: none;
     padding: 2px 16px;
     cursor: pointer;
+    width: fit-content;
+    margin: 0px auto;
+    margin-top: 50px;
   }
 
   .popup .btn:hover {
@@ -1005,13 +1046,14 @@ body {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin-top: 32px;
+    top: 0px;
   }
+
   .hc-luckywheel {
     position: relative;
-    top: 50%;
+    top: 0px;
     left: 50%;
-    transform: translateX(-45%) translateY(35%);
+    /* transform: translateX(-45%) translateY(35%); */
   }
 }
 
@@ -1039,7 +1081,6 @@ body {
   transition: filter 0.3s ease;
 }
 
-/* Làm mờ nội dung khi modal hiển thị */
 .wheel-container.blur {
   display: flex;
   align-items: center;

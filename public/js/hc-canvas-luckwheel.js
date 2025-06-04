@@ -34,18 +34,10 @@
     }
   });
 
-  /**
-   * @param  {[type]} name [description]
-   * @return {[type]}      [description]
-   */
   function normalizeEvent(name) {
     return eventPrefix ? eventPrefix + name : name.toLowerCase();
   }
 
-  /**
-   * @param  {[type]} name [description]
-   * @return {[type]}      [description]
-   */
   function normalizeCss(name) {
     name = name.toLowerCase();
     return cssPrefix ? cssPrefix + name : name;
@@ -60,9 +52,6 @@
   var transform = cssSupport.transform;
   var transitionEnd = cssSupport.transitionEnd;
 
-  // alert(transform);
-  // alert(transitionEnd);
-
   function init(opts) {
     fnGetPrize = opts.getPrize;
     fnGotBack = opts.gotBack;
@@ -74,10 +63,6 @@
     events();
   }
 
-  /**
-   * @param  {String} id
-   * @return {Object} HTML element
-   */
   $ = function (id) {
     return document.getElementById(id);
   };
@@ -108,10 +93,10 @@
     for (var i = 0; i < num; i++) {
       ctx.save();
       ctx.beginPath();
-      ctx.translate(250, 250); // Center Point
+      ctx.translate(250, 250);
       ctx.moveTo(0, 0);
       ctx.rotate((((360 / num) * i - rotateDeg) * Math.PI) / 180);
-      ctx.arc(0, 0, 250, 0, (2 * Math.PI) / num, false); // Radius
+      ctx.arc(0, 0, 250, 0, (2 * Math.PI) / num, false);
       if (i % 2 == 0) {
         ctx.fillStyle = "#ffffff";
       } else {
@@ -123,10 +108,12 @@
       var prizeList = opts.prizes;
       html.push('<li class="hc-luckywheel-item"> <span style="');
       html.push(transform + ": rotate(" + i * turnNum + 'turn)">');
-
-      html.push("<p id='curve'>" + prizeList[i].text + "</p>");
-      html.push(`<img src="${prizeList[i].img}"/>`);
-
+      if (prizeList[i].text === "Voucher giảm giá 3999k") {
+        html.push('<p id="curve" style="color: red">' + prizeList[i].text + "</p>");
+      } else {
+        html.push('<p id="curve">' + prizeList[i].text + "</p>");
+      }
+      html.push(`<img style="transform: rotate(90deg); display: inline-block;" src="${prizeList[i].img}"/> `);
       html.push("</span> </li>");
       if (i + 1 === num) {
         prizeItems.className = "hc-luckywheel-list";
@@ -136,33 +123,46 @@
     }
   }
 
-  /**
-   * @param  {String} msg [description]
-   */
   function showMsg(msg) {
     alert(msg);
   }
 
-  /**
-   * @param  {[type]} deg [description]
-   * @return {[type]}     [description]
-   */
   function runRotate(deg) {
-    // runInit();
-    // setTimeout(function() {
     container.style[transform] = "rotate(" + deg + "deg)";
-    // }, 10);
+    container.style[normalizeCss("transition")] = "transform 1.5s ease-out";
   }
 
-  /**
-   * @return {[type]} [description]
-   */
+  function getSpinData() {
+    const phoneNumber = localStorage.getItem('phoneNumber');
+    let spinData = JSON.parse(localStorage.getItem('spinData')) || {};
+    return spinData[phoneNumber] || { spinsLeft: 0, spinLimit: 0 };
+  }
+
+  function updateSpinData(spinsLeft) {
+    const phoneNumber = localStorage.getItem('phoneNumber');
+    let spinData = JSON.parse(localStorage.getItem('spinData')) || {};
+    spinData[phoneNumber] = { ...spinData[phoneNumber], spinsLeft };
+    localStorage.setItem('spinData', JSON.stringify(spinData));
+  }
+
   function events() {
     bind(btn, "click", function () {
-      addClass(btn, "disabled");
+      const spinData = getSpinData();
+      console.log("Spins Left Before Spin:", spinData.spinsLeft); // Debug log
+      // if (spinData.spinsLeft <= 0) {
+      //   document.getElementById("popupOverlayOutOfTurn").style.display = "flex";
+      //   document.getElementById("content").classList.add("blur");
+      //   return;
+      // }
 
+      addClass(btn, "disabled");
+      playAudio('#wheel-rotate-music');
+    
       fnGetPrize(function (data) {
-        if (data[0] == null && !data[1] == null) {
+        if (data[0] == null) {
+          removeClass(btn, "disabled");
+          document.getElementById("popupOverlayOutOfQuantity").style.display = "flex";
+          document.getElementById("content").classList.add("blur");
           return;
         }
         optsPrize = {
@@ -170,7 +170,7 @@
           chances: data[1],
         };
         deg = deg || 0;
-        deg = deg + (360 - (deg % 360)) + (360 * 10 - data[0] * (360 / num));
+        deg = deg + (360 - (deg % 360)) + (360 * 5 - data[0] * (360 / num));
         runRotate(deg);
       });
       bind(container, transitionEnd, eGot);
@@ -178,16 +178,15 @@
   }
 
   function eGot() {
-      removeClass(btn, "disabled");
-      return fnGotBack(prizes[optsPrize.prizeId]);
+    removeClass(btn, "disabled");
+    const spinData = getSpinData();
+    if (spinData.spinsLeft > 0) {
+      updateSpinData(spinData.spinsLeft - 1);
+      console.log("Spins Left After Spin:", spinData.spinsLeft - 1); // Debug log
+    }
+    return fnGotBack(prizes[optsPrize.prizeId]);
   }
 
-  /**
-   * Bind events to elements
-   * @param {Object}    ele    HTML Object
-   * @param {Event}     event  Event to detach
-   * @param {Function}  fn     Callback function
-   */
   function bind(ele, event, fn) {
     if (typeof addEventListener === "function") {
       ele.addEventListener(event, fn, false);
@@ -196,12 +195,6 @@
     }
   }
 
-  /**
-   * hasClass
-   * @param {Object} ele   HTML Object
-   * @param {String} cls   className
-   * @return {Boolean}
-   */
   function hasClass(ele, cls) {
     if (!ele || !cls) return false;
     if (ele.classList) {
@@ -211,7 +204,6 @@
     }
   }
 
-  // addClass
   function addClass(ele, cls) {
     if (ele.classList) {
       ele.classList.add(cls);
@@ -220,14 +212,13 @@
     }
   }
 
-  // removeClass
   function removeClass(ele, cls) {
     if (ele.classList) {
       ele.classList.remove(cls);
     } else {
       ele.className = ele.className.replace(
         new RegExp(
-          "(^|\\b)" + className.split(" ").join("|") + "(\\b|$)",
+          "(^|\\b)" + cls.split(" ").join("|") + "(\\b|$)",
           "gi"
         ),
         " "
@@ -241,7 +232,7 @@
     },
   };
 
-  window.hcLuckywheel === undefined && (window.hcLuckywheel = hcLuckywheel);
+  window.hcLuckywheel = hcLuckywheel;
 
   if (typeof define == "function" && define.amd) {
     define("HellCat-Luckywheel", [], function () {
@@ -249,10 +240,3 @@
     });
   }
 })();
-// Xử lý việc quay vòng quay
-function rotateWheel() {
-  var spins = Math.floor(Math.random() * 5000 + 12000); // Random số lần quay
-  var rotation = spins + 'deg'; // Tính toán góc quay
-  canvas.style.transition = 'transform 12s ease-out';
-  canvas.style.transform = 'rotate(' + rotation + ')';
-}

@@ -21,10 +21,9 @@
       transform: translateX(-50%) translateY(35%);
     }
 
-    /* Form Container */
     form {
       max-width: 600px;
-      height: 80vh;
+      height: 75vh;
       overflow-y: auto;
       margin: 50px auto;
       padding: 20px 30px;
@@ -74,6 +73,7 @@
     input[type="email"],
     input[type="tel"],
     input[type="date"],
+    input[type="number"],
     select,
     textarea {
       width: 100%;
@@ -93,7 +93,7 @@
     }
 
     .form-group {
-      margin-bottom: 20px;
+      margin-bottom: 10px;
     }
 
     .radio,
@@ -127,56 +127,104 @@
     ul li {
       margin-bottom: 5px;
     }
+
+    .spin-again-btn {
+      background: #F5CB41;
+
+      font-family: "Footer", sans-serif;
+      color: #333;
+      font-size: 28px;
+      font-weight: bold;
+      border-radius: 10px;
+      text-decoration: none;
+      padding: 2px 16px;
+      cursor: pointer;
+      width: fit-content;
+      margin: 0px auto;
+      margin-top: 50px;
+    }
+
+    .spin-again-btn:hover {
+      background: #f5b700;
+    }
+
+    #preSpinForm .help-block {
+      margin-top: 10px !important;
+      margin-bottom: 0px !important;
+    }
+
+    .spin-counter {
+      text-align: center;
+      margin: 20px 0;
+      font-size: 18px;
+      font-weight: bold;
+      color: #4285f4;
+    }
   </style>
 </head>
 
-<body class="bg" style="  height: 100vh !important;
-    width: 100% !important;">
-
-  <div class="wheel-container" id="content">
-    <div style="position: relative;">
-      <h2 class="wheel-title">Thử vận may</br>rinh ngay phần thưởng</h2>
-      <p class="wheel-title-main">CÙNG M.I.A</p>
-      <h2 class="wheel-title-subtitle">Nhấn để quay, nhận liền tay quà tặng hấp dẫn</h2>
+<body class="bg" style="height: 100vh !important; width: 100% !important;">
+  <div class="main-content">
+    <div class="img-section">
+      <img src="./assests/slogan.png" alt="" class="top-img-content">
+      <div class="bottom-content">
+        <img src="./assests/banner.png" alt="" class="bottom-img-content">
+      </div>
     </div>
-    <div class="typo" id="wrapper">
-      <div id="luckywheel" class="hc-luckywheel">
-        <div style="position: relative;">
-          <div class="hc-luckywheel-container">
-            <canvas class="hc-luckywheel-canvas" width="500px" height="500px">Vòng Xoay May Mắn</canvas>
+    <div class="wheel-container" id="content" style="margin-bottom: 100px;">
+      <form id="preSpinForm" style="display: block;">
+        <h2>Nhập thông tin để bắt đầu</h2>
+        <fieldset>
+          <legend>TÊN KHÁCH HÀNG</legend>
+          <div class="form-group">
+            <p class="help-block">Ví dụ: Nguyễn Thị Kim</p>
+            <input type="text" id="userName" name="userName" class="form-control" required>
           </div>
-          <div style="position: relative; margin: 15px;">
-            <img src="./assests/wheel.png" alt="" style="position: absolute;" class="wheel">
+        </fieldset>
+        <fieldset>
+          <legend>SỐ ĐIỆN THOẠI XÁC NHẬN</legend>
+          <div class="form-group">
+            <input type="tel" id="phoneNumber" name="phoneNumber" class="form-control" required pattern="[0-9]{10}">
           </div>
+        </fieldset>
+        <fieldset>
+          <legend>SỐ LƯỢT QUAY</legend>
+          <div class="form-group">
+            <input type="number" id="spinLimit" name="spinLimit" class="form-control" required min="1">
+          </div>
+        </fieldset>
+        <button type="submit" class="btn btn-primary">Bắt đầu quay</button>
+      </form>
+      <div class="typo" id="wrapper" style="display: none;">
+        <div id="luckywheel" class="hc-luckywheel">
+          <div style="position: relative;">
+            <div class="hc-luckywheel-container">
+              <canvas class="hc-luckywheel-canvas" width="500px" height="500px">Vòng Xoay May Mắn</canvas>
+            </div>
+            <div style="position: relative; margin: 15px;">
+              <img src="./assests/wheel.png" alt="" style="position: absolute;" class="wheel">
+            </div>
+          </div>
+          <div class="hc-luckywheel-pointer"></div>
+          <a class="hc-luckywheel-btn" href="javascript:;">
+            <p>BẮT<br />ĐẦU<br />CHƠI</p>
+          </a>
         </div>
-        <div class="hc-luckywheel-pointer"></div>
-        <a class="hc-luckywheel-btn" href="javascript:;">
-          <p>
-            BẮT<br />ĐẦU<br />CHƠI
-          </p>
-        </a>
       </div>
     </div>
   </div>
-  </div>
-  <h2 class="footer-title" id="footer">
-    NHANH TAY LẤY NGAY QUÀ TẶNG SỐ LƯỢNG CÓ HẠN CÙNG M.I.A
-  </h2>
-  <!--Giao diện nhận phần thưởng rồi -->
   <div class="overlay" id="popupOverlay">
     <div class="popup">
-      <div id="popupInformation-1-1">
-
+      <div id="popupInformation-1-1" style="display: none;">
         <img src="./assests/Icon Trúng thưởng.png" alt="🎉" class="win-icon">
         <div class="title">Chúc mừng bạn nhận được</div>
         <div class="prize" id="prizeText"></div>
         <img id="prizeImage" src="" alt="MIA Device">
-        <a class="btn" onclick="showForm()">Điền thông tin để nhận quà</a>
+        <a class="btn" id="fillFormBtn" style="display: none;" onclick="showForm()">Điền thông tin để nhận quà</a>
+        <a class="spin-again-btn" id="spinAgainBtn" style="display: none;" onclick="spinAgain()">Quay tiếp</a>
       </div>
-      <div class="subtitle" id="popupInformation-1-2">Trường hợp xuất hiện 2 giải thưởng cùng mã (code) hoặc<br />mã
-        không
-        hợp lệ, giải thưởng sẽ
-        được xem là không hợp lệ.</div>
+      <div class="subtitle" id="popupInformation-1-2" style="display: none;">Trường hợp xuất hiện 2 giải thưởng cùng mã
+        (code) hoặc<br />mã không hợp lệ, giải thưởng sẽ được xem là không hợp lệ.</div>
       <form
         action="https://docs.google.com/forms/d/e/1FAIpQLScgNbukrIoPBcyBezZZzxooIhWFuJhP3Eh445JJO2ggVakGiA/formResponse"
         target="_self" id="bootstrapForm-1" method="POST" style="display: none;">
@@ -185,24 +233,18 @@
           <small>
             Quý khách hàng lưu ý:
             <ul>
-
-              <li>Phần quà hợp lệ là phần quà được quay 1 lần duy nhất cho mỗi ID khách hàng, M.I.A loại bỏ những
-                phần quà có trùng ID với phần quà đầu tiên mà khách hàng nhận được</li>
-              <li>Phần quà hợp lệ là phần quà có đầy đủ thông tin khách hàng, trong trường hợp chuyên viên M.I.A
-                không thể liên lạc được với khách hàng trúng thưởng bởi nguyên nhân: số điện thoại không chính chủ hoặc
-                không liên lạc được; khách hàng không thể đến nhận trong thời gian quy định; v.v... phần quà sẽ tính là
-                không hợp lệ.</li>
-              <li>Mỗi phần thưởng sẽ có cách thức trao giải và thời hạn sử dụng khác nhau, quý khách vui lòng để ý
-                điện thoại để được chuyên viên M.I.A hướng dẫn nhận thưởng theo đúng quy trình.</li>
-              <li>M.I.A sẽ không giải quyết bất kì phát sinh nào trong quá trình khách hàng tham gia quay thưởng.
-              </li>
-
+              <li>Phần quà hợp lệ là phần quà được quay 1 lần duy nhất cho mỗi ID khách hàng, M.I.A loại bỏ những phần
+                quà có trùng ID với phần quà đầu tiên mà khách hàng nhận được</li>
+              <li>Phần quà hợp lệ là phần quà có đầy đủ thông tin khách hàng, trong trường hợp chuyên viên M.I.A không
+                thể liên lạc được với khách hàng trúng thưởng bởi nguyên nhân: số điện thoại không chính chủ hoặc không
+                liên lạc được; khách hàng không thể đến nhận trong thời gian quy định; v.v... phần quà sẽ tính là không
+                hợp lệ.</li>
+              <li>Mỗi phần thưởng sẽ có cách thức trao giải và thời hạn sử dụng khác nhau, quý khách vui lòng để ý điện
+                thoại để được chuyên viên M.I.A hướng dẫn nhận thưởng theo đúng quy trình.</li>
+              <li>M.I.A sẽ không giải quyết bất kì phát sinh nào trong quá trình khách hàng tham gia quay thưởng.</li>
             </ul>
           </small>
         </fieldset>
-
-
-        <!-- Field type: "short" id: "1399457082" -->
         <fieldset>
           <legend for="1399457082">TÊN KHÁCH HÀNG</legend>
           <div class="form-group">
@@ -210,18 +252,12 @@
             <input id="919986610" type="text" name="entry.919986610" class="form-control" required>
           </div>
         </fieldset>
-
-
-        <!-- Field type: "date" id: "407916102" -->
         <fieldset>
           <legend for="407916102">NĂM SINH</legend>
           <div class="form-group">
             <input type="date" id="471289509_date_1" placeholder="12/21/2024" class="form-control" required>
           </div>
         </fieldset>
-
-
-        <!-- Field type: "choices" id: "70487533" -->
         <fieldset>
           <legend for="70487533">GIỚI TÍNH</legend>
           <div class="form-group">
@@ -240,18 +276,12 @@
             </div>
           </div>
         </fieldset>
-
-
-        <!-- Field type: "short" id: "1414010662" -->
         <fieldset>
           <legend for="1414010662">SỐ ĐIỆN THOẠI XÁC NHẬN</legend>
           <div class="form-group">
             <input id="1469647055" type="text" name="entry.1469647055" class="form-control" required>
           </div>
         </fieldset>
-
-
-        <!-- Field type: "short" id: "517982298" -->
         <fieldset>
           <legend for="517982298">EMAIL (nếu có)</legend>
           <div class="form-group">
@@ -260,18 +290,12 @@
             <input id="881129091" type="text" name="entry.881129091" class="form-control">
           </div>
         </fieldset>
-
-
-        <!-- Field type: "short" id: "1922738138" -->
-        <fieldset hidden>
+        <fieldset>
           <legend for="1922738138">PHẦN QUÀ NHẬN ĐƯỢC</legend>
           <div class="form-group">
-            <input id="151499827-1" type="text" name="entry.151499827" class="form-control">
+            <input id="151499827-1" type="text" name="entry.151499827" class="form-control" readonly>
           </div>
         </fieldset>
-
-
-        <!-- Field type: "checkboxes" id: "118160036" -->
         <fieldset>
           <legend for="118160036">BẠN CÓ QUAN TÂM ĐẾN DỊCH VỤ NÀO SAU ĐÂY HAY KHÔNG?</legend>
           <div class="form-group">
@@ -319,9 +343,6 @@
             </div>
           </div>
         </fieldset>
-
-
-        <!-- Field type: "checkboxes" id: "504332009" -->
         <fieldset>
           <legend for="504332009">BẠN BIẾT ĐẾN M.I.A QUA ĐÂU?</legend>
           <div class="form-group">
@@ -351,469 +372,328 @@
             </div>
           </div>
         </fieldset>
-
         <input type="hidden" name="fvv" value="1">
         <input type="hidden" name="fbzx" value="-6535336632366687464">
-        <!--
-          CAVEAT: In multipages (multisection) forms, *pageHistory* field tells to google what sections we've currently completed.
-          This usually starts as "0" for the first page, then "0,1" in the second page... up to "0,1,2..N" in n-th page.
-          Keep this in mind if you plan to change this code to recreate any sort of multipage-feature in your exported form.
-          We're setting this to the total number of pages in this form because we're sending all fields from all the section together.
-      -->
         <input type="hidden" name="pageHistory" value="0">
-
         <input class="btn btn-primary" type="submit" value="Submit" style="margin: auto; width: 100%;">
       </form>
     </div>
   </div>
-  <!--Giao diện đã có quà rồi -->
-
-  <!-- <div class="overlay" id="popupOverlayOutOfTurn">
-    <div class="popup">
-      <img src="./assests/Icon hết lượt quay.png" alt="🎉" class="win-icon">
-      <div class="title" id="titleOutOfTurn"></div>
-      <img id="prizeImageOutOfTurn" src="" alt="MIA Device">
-      <a class="btn" onclick="closeModal()">Điền thông tin để nhận quà</a>
-      <div class="subtitle">Trường hợp xuất hiện 2 giải thưởng cùng mã (code) hoặc<br />mã không hợp lệ, giải thưởng
-        sẽ được xem là không hợp lệ.</div>
-    </div>
-  </div> -->
   <div class="overlay" id="popupOverlayOutOfTurn">
     <div class="popup">
       <div id="popupInformation-2-1">
         <img src="./assests/Icon hết lượt quay.png" alt="🎉" class="win-icon">
-        <div class="title" id="titleOutOfTurn"></div>
-        <img id="prizeImageOutOfTurn" src="" alt="MIA Device">
-        <a class="btn" onclick="showForm()">Điền thông tin để nhận quà</a>
-
+        <div class="title">HẾT LƯỢT QUAY</div>
+        <div class="subtitle">Rất tiếc, bạn đã hết lượt quay. Vui lòng liên hệ nhân viên để được hỗ trợ thêm!</div>
+        <a class="btn" onclick="closeModal()">Đóng</a>
       </div>
-      <div class="subtitle" id="popupInformation-2-2">Trường hợp xuất hiện 2 giải thưởng cùng mã (code) hoặc<br />mã
-        không
-        hợp lệ, giải thưởng sẽ
-        được xem là không hợp lệ.</div>
-      <form
-        action="https://docs.google.com/forms/d/e/1FAIpQLScgNbukrIoPBcyBezZZzxooIhWFuJhP3Eh445JJO2ggVakGiA/formResponse"
-        target="_self" id="bootstrapForm-2" method="POST" style="display: none;">
-        <fieldset>
-          <h2>ĐIỀN THÔNG TIN NHẬN QUÀ 21.12</h2>
-          <small>
-            Quý khách hàng lưu ý:
-            <ul>
-
-              <li>Phần quà hợp lệ là phần quà được quay 1 lần duy nhất cho mỗi ID khách hàng, M.I.A loại bỏ những
-                phần quà có trùng ID với phần quà đầu tiên mà khách hàng nhận được</li>
-              <li>Phần quà hợp lệ là phần quà có đầy đủ thông tin khách hàng, trong trường hợp chuyên viên M.I.A
-                không thể liên lạc được với khách hàng trúng thưởng bởi nguyên nhân: số điện thoại không chính chủ hoặc
-                không liên lạc được; khách hàng không thể đến nhận trong thời gian quy định; v.v... phần quà sẽ tính là
-                không hợp lệ.</li>
-              <li>Mỗi phần thưởng sẽ có cách thức trao giải và thời hạn sử dụng khác nhau, quý khách vui lòng để ý
-                điện thoại để được chuyên viên M.I.A hướng dẫn nhận thưởng theo đúng quy trình.</li>
-              <li>M.I.A sẽ không giải quyết bất kì phát sinh nào trong quá trình khách hàng tham gia quay thưởng.
-              </li>
-
-            </ul>
-          </small>
-        </fieldset>
-
-
-        <!-- Field type: "short" id: "1399457082" -->
-        <fieldset>
-          <legend for="1399457082">TÊN KHÁCH HÀNG</legend>
-          <div class="form-group">
-            <p class="help-block">Ví dụ: Nguyễn Thị Kim</p>
-            <input id="919986610" type="text" name="entry.919986610" class="form-control" required>
-          </div>
-        </fieldset>
-
-
-        <!-- Field type: "date" id: "407916102" -->
-        <fieldset>
-          <legend for="407916102">NĂM SINH</legend>
-          <div class="form-group">
-            <input type="date" id="471289509_date_2" placeholder="12/21/2024" class="form-control" required>
-          </div>
-        </fieldset>
-
-
-        <!-- Field type: "choices" id: "70487533" -->
-        <fieldset>
-          <legend for="70487533">GIỚI TÍNH</legend>
-          <div class="form-group">
-            <p class="help-block">Giới tính được ghi trên giấy tờ tùy thân của bạn</p>
-            <div class="radio">
-              <label>
-                <input type="radio" name="entry.680423588" value="NAM" required>
-                NAM
-              </label>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="entry.680423588" value="NỮ" required>
-                NỮ
-              </label>
-            </div>
-          </div>
-        </fieldset>
-
-
-        <!-- Field type: "short" id: "1414010662" -->
-        <fieldset>
-          <legend for="1414010662">SỐ ĐIỆN THOẠI XÁC NHẬN</legend>
-          <div class="form-group">
-            <input id="1469647055" type="text" name="entry.1469647055" class="form-control" required>
-          </div>
-        </fieldset>
-
-
-        <!-- Field type: "short" id: "517982298" -->
-        <fieldset>
-          <legend for="517982298">EMAIL (nếu có)</legend>
-          <div class="form-group">
-            <p class="help-block">Hãy điền email để chuyên viên kiểm tra thông tin của bạn dễ dàng và thông báo nhận
-              thưởng sớm nhất cho bạn nhé!</p>
-            <input id="881129091" type="text" name="entry.881129091" class="form-control">
-          </div>
-        </fieldset>
-
-
-        <!-- Field type: "short" id: "1922738138" -->
-        <fieldset hidden>
-          <legend for="1922738138">PHẦN QUÀ NHẬN ĐƯỢC</legend>
-          <div class="form-group">
-            <input id="151499827-2" type="text" name="entry.151499827" class="form-control">
-          </div>
-        </fieldset>
-
-
-        <!-- Field type: "checkboxes" id: "118160036" -->
-        <fieldset>
-          <legend for="118160036">BẠN CÓ QUAN TÂM ĐẾN DỊCH VỤ NÀO SAU ĐÂY HAY KHÔNG?</legend>
-          <div class="form-group">
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" name="entry.16258585" value="1. Điều trị da mụn">
-                1. Điều trị da mụn
-              </label>
-            </div>
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" name="entry.16258585" value="2. Xóa nám / tàn nhang">
-                2. Xóa nám / tàn nhang
-              </label>
-            </div>
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" name="entry.16258585" value="3. Wax lông">
-                3. Wax lông
-              </label>
-            </div>
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" name="entry.16258585" value="4. Triệt lông">
-                4. Triệt lông
-              </label>
-            </div>
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" name="entry.16258585" value="5. Massage body nhức mỏi">
-                5. Massage body nhức mỏi
-              </label>
-            </div>
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" name="entry.16258585" value="6. Gội đầu thư giãn - dưỡng sinh">
-                6. Gội đầu thư giãn - dưỡng sinh
-              </label>
-            </div>
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" name="entry.16258585" value="7. Tắm trắng body">
-                7. Tắm trắng body
-              </label>
-            </div>
-          </div>
-        </fieldset>
-
-
-        <!-- Field type: "checkboxes" id: "504332009" -->
-        <fieldset>
-          <legend for="504332009">BẠN BIẾT ĐẾN M.I.A QUA ĐÂU?</legend>
-          <div class="form-group">
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" name="entry.1078723396" value="Mạng xã hội (Facebook, Tiktok,...)">
-                Mạng xã hội (Facebook, Tiktok,...)
-              </label>
-            </div>
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" name="entry.1078723396" value="Quảng cáo facebook">
-                Quảng cáo facebook
-              </label>
-            </div>
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" name="entry.1078723396" value="Bạn bè giới thiệu">
-                Bạn bè giới thiệu
-              </label>
-            </div>
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" name="entry.1078723396" value="Chưa nghe qua trước đó">
-                Chưa nghe qua trước đó
-              </label>
-            </div>
-          </div>
-        </fieldset>
-
-        <input type="hidden" name="fvv" value="1">
-        <input type="hidden" name="fbzx" value="-6535336632366687464">
-        <!--
-          CAVEAT: In multipages (multisection) forms, *pageHistory* field tells to google what sections we've currently completed.
-          This usually starts as "0" for the first page, then "0,1" in the second page... up to "0,1,2..N" in n-th page.
-          Keep this in mind if you plan to change this code to recreate any sort of multipage-feature in your exported form.
-          We're setting this to the total number of pages in this form because we're sending all fields from all the section together.
-      -->
-        <input type="hidden" name="pageHistory" value="0">
-
-        <input class="btn btn-primary" type="submit" value="Submit" style="margin: auto; width: 100%;">
-      </form>
-
     </div>
   </div>
+  <div class="overlay" id="popupOverlayOutOfQuantity">
+    <div class="popup">
+      <div id="popupInformation-2-1">
+        <img src="./assests/Icon hết lượt quay.png" alt="🎉" class="win-icon">
+        <div class="title">HẾT PHẦN QUÀ</div>
+        <div class="subtitle">Rất tiếc, số lượng phần quà đã hết. Vui lòng liên hệ nhân viên để được hỗ trợ thêm!</div>
+        <a class="btn" onclick="closeModal()">Đóng</a>
+      </div>
+    </div>
   </div>
-
-
   <audio allow="autoplay" loop src="./assests/nhacNen.mp3" id="wheel-background-music"></audio>
   <audio src="./assests/MIA WAX LÔNG.mp3" id="wheel-rotate-music"></audio>
-  </style>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"
     integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js"
     integrity="sha256-2Pjr1OlpZMY6qesJM68t2v39t+lMLvxwpa8QlRjJroA=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/hc-canvas-luckwheel@1.0.2/dist/hc-canvas-luckwheel.min.js"></script>
   <script src="js/hc-canvas-luckwheel.js"></script>
   <script src="js/form-handler.js" defer></script>
   <script>
     var isPercentage = true;
-
     const prizes = [
-      {
-        text: "Giảm 20% Dịch Vụ Peel",
-        number: 1,
-        percentpage: 0.1,
-        img: './assests/gifts/Voucher giảm 20_ peel da.png'
-      },
-      {
-        text: "Túi Tote",
-        number: 1,
-        percentpage: 0.1,
-        img: './assests/gifts/Túi Tote.png'
-      },
-      {
-        text: "Túi Sáp 100gram",
-        number: 1,
-        percentpage: 0.1,
-        img: './assests/gifts/Túi sáp 100gr.png'
-      },
-      {
-        text: "Discount 50% Peel",
-        number: 1,
-        percentpage: 0.1,
-        img: './assests/gifts/Voucher giảm 50_ peel.png'
-      },
-      {
-        text: "Free 100% Dịch Vụ Da",
-        number: 1,
-        percentpage: 0.05,
-        img: './assests/gifts/Voucher free dịch vụ da.png'
-      },
-      {
-        text: "Triệt Trải Nghiệm 1K",
-        number: 1,
-        percentpage: 0.1,
-        img: './assests/gifts/Triệt trải nghiệm 1K.png'
-      },
-      {
-        text: "Giảm 30% Cấy Trắng Enzyme 5D",
-        number: 1,
-        percentpage: 0.1,
-        img: './assests/gifts/Voucher giảm 30_ cấy trắng 5D.png'
-      },
-      {
-        text: "Túi Tote",
-        number: 1,
-        percentpage: 0.1,
-        img: './assests/gifts/Túi Tote.png'
-      },
-      {
-        text: "1 Buổi Wax Nách Free",
-        number: 1,
-        percentpage: 0.1,
-        img: './assests/gifts/Voucher Wax nách free_1.png'
-      },
-      {
-        text: "Wax 9K",
-        number: 1,
-        percentpage: 0.05,
-        img: './assests/gifts/Voucher wax nách 9K.png'
-      },
-      {
-        text: "Triệt Nách Nữ 499K Nam 899K",
-        number: 1,
-        percentpage: 0.05,
-        img: './assests/gifts/Máy triệt lông.png'
-      },
-      {
-        text: "Giảm 30% Dịch Vụ Da",
-        number: 1,
-        percentpage: 0.05,
-        img: './assests/gifts/Voucher giảm 30_ dịch vụ da.png'
-      },
+      { text: "Voucher giảm giá 50k", number: 50, percentpage: 0.35, img: './assests/gifts/voucher50k.png' },
+      { text: "Voucher giảm giá 100k", number: 40, percentpage: 0.25, img: './assests/gifts/voucher100k.png' },
+      { text: "Voucher giảm giá 200k", number: 30, percentpage: 0.15, img: './assests/gifts/voucher200k.png' },
+      { text: "Voucher giảm giá 300k", number: 20, percentpage: 0.1, img: './assests/gifts/voucher300k.png' },
+      { text: "Voucher giảm giá 500k", number: 10, percentpage: 0.1, img: './assests/gifts/voucher500k.png' },
+      { text: "Voucher giảm giá 50k", number: 45, percentpage: 0.35, img: './assests/gifts/voucher50k.png' },
+      { text: "Voucher giảm giá 1000k", number: 5, percentpage: 0.05, img: './assests/gifts/voucher1000k.png' },
+      { text: "Voucher giảm giá 3999k", number: 0, percentpage: 0, img: './assests/gifts/voucher3999k.png' },
     ];
+    window.prizes = prizes;
 
-    function openModal(data) {
-      // Cập nhật nội dung modal
-      const localData = JSON.parse(localStorage.getItem("prize"));
-      document.getElementById("popupInformation-1-1").style.display = "block";
-      document.getElementById("popupInformation-1-2").style.display = "block";
-      document.getElementById("popupInformation-2-1").style.display = "block";
-      document.getElementById("popupInformation-2-2").style.display = "block";
-      document.getElementById("bootstrapForm-1").style.display = "none";
-      document.getElementById("bootstrapForm-2").style.display = "none";
-      if (localData) {
-        document.getElementById("titleOutOfTurn").innerHTML = `Bạn đã nhận được\n<p class="product-name">${localData?.text}</p>\n<p style="margin:0px";>từ M.I.A rồi, hãy điền thông tin</p><p style="margin:0px";>để nhận quà ngay nhé!</p>`;
-        document.getElementById('151499827-2').value = localData?.text;
-        console.log(localData?.text);
-        if (localData?.text == 'Túi Tote' || localData?.text == 'Túi Sáp 100gram' || localData?.text == 'Triệt Nách Nữ 499K Nam 899K') {
-          document.getElementById("prizeImageOutOfTurn").src = localData?.img;
-        } else {
-          document.getElementById("prizeImageOutOfTurn").classList.add("rotate");
-          document.getElementById("prizeImageOutOfTurn").src = localData?.img;
-        }
-
-        document.getElementById("popupOverlayOutOfTurn").style.display = "flex";
-        document.getElementById("content").classList.add("blur");
-        document.getElementById("footer").classList.add("blur");
-      }
-      else {
-        // Nếu trúng thưởng, cập nhật phần thưởng
-        document.getElementById("prizeText").textContent = data.text;
-        localStorage.setItem("prize", JSON.stringify(data));
-        document.getElementById('151499827-1').value = data?.text;
-        if (data.text == 'Túi Tote' || data.text == 'Túi Sáp 100gram' || data.text == 'Triệt Nách Nữ 499K Nam 899K') {
-          document.getElementById("prizeImage").src = data.img;
-        } else {
-          document.getElementById("prizeImage").classList.add("rotate");
-          document.getElementById("prizeImage").src = data.img;
-        }
-
-        document.getElementById("popupOverlay").style.display = "flex";
-        document.getElementById("content").classList.add("blur");
-        document.getElementById("footer").classList.add("blur");
-      }
-
+    function getSpinData() {
+      return JSON.parse(sessionStorage.getItem("spinData")) || {};
     }
 
-    function closeModal() {
-      // Ẩn modal và xóa lớp làm mờ
-      document.getElementById("prizeImage").classList.remove("rotate");
-      document.getElementById("prizeImageOutOfTurn").classList.remove("rotate");
-      document.getElementById("popupOverlay").style.display = "none";
-      document.getElementById("popupOverlayOutOfTurn").style.display = "none";
-      document.getElementById("content").classList.remove("blur");
-      document.getElementById("footer").classList.remove("blur");
-
+    function setSpinData(data) {
+      sessionStorage.setItem("spinData", JSON.stringify(data));
     }
 
-    document.addEventListener(
-      "DOMContentLoaded",
-      async function () {
-        const prizeFetched = await fetch('https://api.jsonbin.io/v3/b/67662338ad19ca34f8de9939/latest', {
-          method: 'GET',
-          headers: {
-            'X-Master-key': "$2a$10$64xklhAsmRUZu55xRZhqVO783BJlU/EmxsnWLzfzwZ1TmQ6kD7fxu"
+    function getCurrentUserSpins() {
+      const phoneNumber = sessionStorage.getItem("currentPhoneNumber");
+      if (!phoneNumber) return null;
+      const spinData = getSpinData();
+      return spinData[phoneNumber] || null;
+    }
+
+    function updateSpinCounter() {
+      const userSpins = getCurrentUserSpins();
+      const counterElement = document.getElementById("spinCounter");
+      if (userSpins && counterElement) {
+        counterElement.textContent = `Còn lại: ${userSpins.spinsLeft} lượt`;
+      }
+    }
+
+    document.getElementById("preSpinForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const userName = document.getElementById("userName").value.trim();
+      const phoneNumber = document.getElementById("phoneNumber").value.trim();
+      const spinLimit = parseInt(document.getElementById("spinLimit").value);
+
+      // Validate input fields
+      if (!userName || !phoneNumber || isNaN(spinLimit) || spinLimit <= 0) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Lỗi',
+          text: 'Vui lòng điền đầy đủ thông tin hợp lệ (tên, số điện thoại, số lượt quay phải lớn hơn 0)!',
+        });
+        console.error('Validation failed: userName:', userName, 'phoneNumber:', phoneNumber, 'spinLimit:', spinLimit);
+        return;
+      }
+
+      // Validate phone number format (10 digits)
+      const phonePattern = /^[0-9]{10}$/;
+      if (!phonePattern.test(phoneNumber)) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Lỗi',
+          text: 'Số điện thoại phải gồm 10 chữ số và không chứa ký tự đặc biệt!',
+        });
+        console.error('Invalid phone number format:', phoneNumber);
+        return;
+      }
+
+      // Check session storage availability
+      try {
+        const testKey = '__test__';
+        sessionStorage.setItem(testKey, testKey);
+        sessionStorage.removeItem(testKey);
+      } catch (error) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Lỗi hệ thống',
+          text: 'Không thể truy cập bộ nhớ trình duyệt. Vui lòng thử lại hoặc liên hệ hỗ trợ!',
+        });
+        console.error('Session storage error:', error);
+        return;
+      }
+
+      // Check if phone number already exists
+      const spinData = getSpinData();
+      if (spinData[phoneNumber]) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Số điện thoại đã được sử dụng',
+          text: 'Số điện thoại này đã được đăng ký. Vui lòng sử dụng số điện thoại khác!',
+        });
+        console.warn('Duplicate phone number detected:', phoneNumber);
+        return; // Stop execution here to prevent further processing
+      }
+
+      // Store user data and proceed only if no duplicate
+      try {
+        sessionStorage.setItem("currentPhoneNumber", phoneNumber);
+        sessionStorage.setItem("currentUserName", userName);
+
+        // Initialize spin data
+        spinData[phoneNumber] = {
+          name: userName,
+          spinsLeft: spinLimit,
+          totalSpins: spinLimit
+        };
+        setSpinData(spinData);
+
+        // Clear previous prizes
+        sessionStorage.removeItem("wonPrizes");
+
+        // Show wheel, hide form
+        document.getElementById("preSpinForm").style.display = "none";
+        document.getElementById("wrapper").style.display = "block";
+        updateSpinCounter();
+
+        console.log(`Initialized user ${userName} (${phoneNumber}) with ${spinLimit} spins`);
+      } catch (error) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Lỗi hệ thống',
+          text: 'Đã xảy ra lỗi khi lưu dữ liệu. Vui lòng thử lại!',
+        });
+        console.error('Error during form submission:', error);
+      }
+    });
+
+    document.addEventListener("DOMContentLoaded", async function () {
+      const initData = prizes;
+
+      hcLuckywheel.init({
+        id: "luckywheel",
+        config: function (callback) {
+          callback && callback(initData);
+        },
+        mode: "text",
+        getPrize: function (callback) {
+          // Check if user has spins left BEFORE spinning
+          const userSpins = getCurrentUserSpins();
+
+          if (userSpins.spinsLeft <= 0) {
+            console.log("No spins left before spinning - showing out of turn modal");
+            document.getElementById("popupOverlayOutOfTurn").style.display = "flex";
+            document.getElementById("content").classList.add("blur");
+            return;
           }
-        }).then(response => response.json()).then(data => data.record).catch(err => { });
-        console.log({ prizeFetched });
-        const initData = prizeFetched ? prizeFetched : prizes;
-        hcLuckywheel.init({
-          id: "luckywheel",
-          config: function (callback) {
-            callback && callback(initData);
-          },
-          mode: "text",
-          getPrize: function (callback) {
-            var rand = randomIndex(initData);
-            var chances = rand;
-            callback && callback([rand, chances]);
-          },
-          gotBack: function (data) {
+
+          console.log(`User has ${userSpins.spinsLeft} spins left before spinning`);
+
+          var rand = randomIndex(initData);
+          var chances = rand !== null ? rand : 0;
+          callback && callback([rand, chances]);
+        },
+        gotBack: function (data) {
+          if (data) {
+            const userSpins = getCurrentUserSpins();
+            if (!userSpins || userSpins.spinsLeft <= 0) {
+              console.log("No spins left - this shouldn't happen");
+              return;
+            }
+
+            let wonPrizes = JSON.parse(sessionStorage.getItem("wonPrizes")) || [];
+            wonPrizes.push(data);
+            sessionStorage.setItem("wonPrizes", JSON.stringify(wonPrizes));
+
+            const prizeText = wonPrizes.map(prize => prize.text).join(", ");
+            document.getElementById("prizeText").textContent = prizeText;
+            document.getElementById("prizeImage").src = data.img;
+            document.getElementById("151499827-1").value = prizeText;
+
+            // Decrement spins AFTER showing result
+            const spinData = getSpinData();
+            const phoneNumber = sessionStorage.getItem("currentPhoneNumber");
+            spinData[phoneNumber].spinsLeft -= 1;
+            setSpinData(spinData);
+
+            const remainingSpins = spinData[phoneNumber].spinsLeft;
+            console.log(`Spins remaining after this spin: ${remainingSpins}`);
+
+            // Update counter
+            updateSpinCounter();
+
+            // Show confetti
             confetti({
               zIndex: 99999,
               particleCount: 500,
               startVelocity: 30,
               spread: 360,
             });
-            openModal(data)
+
+            // Show appropriate modal
+            showPrizeModal(data, remainingSpins);
           }
-        });
-      },
-      false
-    );
+        }
+      });
+    }, false);
+
+    function showPrizeModal(data, remainingSpins) {
+      // Show prize information
+      document.getElementById("popupInformation-1-1").style.display = "block";
+      document.getElementById("popupInformation-1-2").style.display = "block";
+
+      const fillFormBtn = document.getElementById("fillFormBtn");
+      const spinAgainBtn = document.getElementById("spinAgainBtn");
+
+      // Logic for button display:
+      // - If this was the last spin (remainingSpins = 0): show Fill Form button
+      // - If there are still spins left (remainingSpins > 0): show Spin Again button
+      if (remainingSpins === 0) {
+        fillFormBtn.style.display = "block";
+        spinAgainBtn.style.display = "none";
+        console.log("Last spin completed - showing Fill Form button");
+      } else {
+        fillFormBtn.style.display = "none";
+        spinAgainBtn.style.display = "block";
+        console.log(`${remainingSpins} spins remaining - showing Spin Again button`);
+      }
+
+      document.getElementById("popupOverlay").style.display = "flex";
+      document.getElementById("content").classList.add("blur");
+    }
+
+    function closeModal() {
+      document.getElementById("prizeImage").classList.remove("rotate");
+      document.getElementById("popupOverlay").style.display = "none";
+      document.getElementById("popupOverlayOutOfTurn").style.display = "none";
+      document.getElementById("popupOverlayOutOfQuantity").style.display = "none";
+      document.getElementById("content").classList.remove("blur");
+    }
+
+    function spinAgain() {
+      closeModal();
+      // Small delay to ensure modal is closed before next spin
+      setTimeout(() => {
+        document.querySelector(".hc-luckywheel-btn").click();
+      }, 100);
+    }
+
+    function showForm() {
+      document.getElementById("popupInformation-1-1").style.display = "none";
+      document.getElementById("popupInformation-1-2").style.display = "none";
+      document.getElementById("bootstrapForm-1").style.display = "block";
+
+      // Pre-fill form with user data
+      const userName = sessionStorage.getItem("currentUserName");
+      const phoneNumber = sessionStorage.getItem("currentPhoneNumber");
+
+      if (userName) {
+        document.getElementById("919986610").value = userName;
+      }
+      if (phoneNumber) {
+        document.getElementById("1469647055").value = phoneNumber;
+      }
+    }
 
     function randomIndex(prizes) {
-      document.querySelector("#wheel-background-music").pause()
-      document.querySelector("#wheel-rotate-music").play()
+      const userSpins = getSpinData();
+      if (!userSpins || userSpins.spinsLeft <= 0) {
+        console.log("No spins available for random selection");
+        return null;
+      }
+      let availablePrizes = prizes.filter(prize => prize.number > 0);
+      if (availablePrizes.length === 0) {
+        console.log("No available prizes");
+        return null;
+      }
+      let rand = Math.floor(Math.random() * availablePrizes.length);
+      return prizes.indexOf(availablePrizes[rand]);
+    }
 
-      // Check if all prizes are exhausted
+    function playAudio(id) {
+      const audio = document.querySelector(id);
+      if (audio) {
+        audio.play().catch(error => {
+          console.warn(`Failed to play audio ${id}:`, error);
+        });
+      }
+    }
 
-
-      if (isPercentage) {
-        let rand = Math.random();
-        let cumulative = 0;
-        let prizeIndex = null;
-
-        for (let i = 0; i < prizes.length; i++) {
-          cumulative += prizes[i].percentpage;
-          if (rand < cumulative) {
-            prizeIndex = i;
-            break;
-          }
-        }
-
-        // If no prize is selected due to floating point precision, assign the last prize
-
-        // Check if the selected prize is still available
-        if (prizes[prizeIndex].number > 0) {
-          prizes[prizeIndex].number -= 1;
-          return prizeIndex;
-        } else {
-          prizes[prizeIndex].number = 0
-          prizes[prizeIndex].number -= 1;
-          return prizeIndex
-        }
-      } else {
-        // Random selection without percentage
-        var availablePrizes = prizes.filter(prize => prize.number > 0);
-        if (availablePrizes.length === 0) {
-          return null;
-        }
-        var rand = Math.floor(Math.random() * availablePrizes.length);
-        var selectedPrize = availablePrizes[rand];
-        var prizeIndex = prizes.indexOf(selectedPrize);
-        prizes[prizeIndex].number -= 1;
-
-        return prizeIndex;
-
+    function pauseAudio(id) {
+      const audio = document.querySelector(id);
+      if (audio) {
+        audio.pause();
       }
     }
   </script>
-
-
 </body>
 
 </html>
