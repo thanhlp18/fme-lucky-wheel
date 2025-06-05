@@ -14,8 +14,8 @@ $(document).ready(function () {
         const spinData = JSON.parse(localStorage.getItem('spinData')) || {};
         const phoneNumber = localStorage.getItem('phoneNumber');
         if (spinData[phoneNumber]) {
-            $('#919986610').val(spinData[phoneNumber].userName);
-            $('#1469647055').val(phoneNumber);
+            $('#795063311').val(spinData[phoneNumber].userName);
+            $('#733058814').val(phoneNumber);
         }
     };
 
@@ -49,10 +49,10 @@ $(document).ready(function () {
 
     $('#bootstrapForm-1').submit(function (event) {
         event.preventDefault();
-        const name = $('#919986610').val();
-        const phone = $('#1469647055').val();
-        const date = $('#471289509_date_1').val();
-        const gender = $('input[name="entry.680423588"]:checked').val();
+        const name = $('#795063311').val();
+        const phone = $('#733058814').val();
+        const date = $('#1451296626_date').val();
+        const gender = $('input[name="entry.38078272"]:checked').val();
         if (!name || !phone || !date || !gender) {
             Swal.fire({ icon: 'error', title: 'Lỗi', text: 'Vui lòng điền đầy đủ các trường bắt buộc.' });
             return;
@@ -68,9 +68,9 @@ $(document).ready(function () {
         }
 
         // Add hidden fields for date components
-        $('<input>').attr({ type: 'hidden', name: 'entry.471289509_year', value: d.getFullYear() }).appendTo('#bootstrapForm-1');
-        $('<input>').attr({ type: 'hidden', name: 'entry.471289509_month', value: d.getMonth() + 1 }).appendTo('#bootstrapForm-1');
-        $('<input>').attr({ type: 'hidden', name: 'entry.471289509_day', value: d.getUTCDate() }).appendTo('#bootstrapForm-1');
+        $('<input>').attr({ type: 'hidden', name: 'entry.1451296626_year', value: d.getFullYear() }).appendTo('#bootstrapForm-1');
+        $('<input>').attr({ type: 'hidden', name: 'entry.1451296626_month', value: d.getMonth() + 1 }).appendTo('#bootstrapForm-1');
+        $('<input>').attr({ type: 'hidden', name: 'entry.1451296626_day', value: d.getUTCDate() }).appendTo('#bootstrapForm-1');
 
         // Create a hidden iframe for form submission
         const iframeId = 'hiddenIframe-' + new Date().getTime(); // Unique ID to avoid conflicts
