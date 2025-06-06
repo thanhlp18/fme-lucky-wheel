@@ -47,7 +47,7 @@ $(document).ready(function () {
         $('#wrapper').show();
     });
 
-    $('#bootstrapForm-1').submit(function (event) {
+    $('#fillFormBtn').click(function (event) {
         event.preventDefault();
         const name = $('#795063311').val();
         const phone = $('#733058814').val();

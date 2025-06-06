@@ -220,7 +220,7 @@
         <div class="title">Chúc mừng bạn nhận được</div>
         <div class="prize" id="prizeText"></div>
         <img id="prizeImage" src="" alt="MIA Device">
-        <a class="btn" id="fillFormBtn" style="display: none;" onclick="showForm()">Điền thông tin để nhận quà</a>
+        <a class="btn" id="completeBtn" style="display: none;" onclick="completeAndSubmit()">Hoàn thành</a>
         <a class="spin-again-btn" id="spinAgainBtn" style="display: none;" onclick="spinAgain()">Quay tiếp</a>
       </div>
       <div class="subtitle" id="popupInformation-1-2" style="display: none;">Trường hợp xuất hiện 2 giải thưởng cùng mã
@@ -258,52 +258,11 @@
         </fieldset>
 
 
-        <!-- Field type: "date" id: "1467425571" -->
-        <fieldset>
-          <legend for="1467425571">NĂM SINH</legend>
-          <div class="form-group">
-            <input type="date" id="1451296626_date" placeholder="6/6/2025" class="form-control" required>
-          </div>
-        </fieldset>
-
-
-        <!-- Field type: "choices" id: "1489629605" -->
-        <fieldset>
-          <legend for="1489629605">GIỚI TÍNH</legend>
-          <div class="form-group">
-            <p class="help-block">Giới tính được ghi trên giấy tờ tùy thân của bạn</p>
-            <div class="radio">
-              <label>
-                <input type="radio" name="entry.38078272" value="NAM" required>
-                NAM
-              </label>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="entry.38078272" value="NỮ" required>
-                NỮ
-              </label>
-            </div>
-          </div>
-        </fieldset>
-
-
         <!-- Field type: "short" id: "181428271" -->
         <fieldset>
           <legend for="181428271">SỐ ĐIỆN THOẠI XÁC NHẬN</legend>
           <div class="form-group">
             <input id="733058814" type="text" name="entry.733058814" class="form-control" required>
-          </div>
-        </fieldset>
-
-
-        <!-- Field type: "short" id: "872514789" -->
-        <fieldset>
-          <legend for="872514789">EMAIL (nếu có)</legend>
-          <div class="form-group">
-            <p class="help-block">Hãy điền email để chuyên viên kiểm tra thông tin của bạn dễ dàng và thông báo nhận
-              thưởng sớm nhất cho bạn nhé!</p>
-            <input id="986918714" type="text" name="entry.986918714" class="form-control">
           </div>
         </fieldset>
 
@@ -316,90 +275,8 @@
           </div>
         </fieldset>
 
-
-        <!-- Field type: "checkboxes" id: "1947932472" -->
-        <fieldset>
-          <legend for="1947932472">BẠN CÓ QUAN TÂM ĐẾN DỊCH VỤ NÀO SAU ĐÂY HAY KHÔNG?</legend>
-          <div class="form-group">
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" name="entry.1590987877" value="1. Điều trị da mụn">
-                1. Điều trị da mụn
-              </label>
-            </div>
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" name="entry.1590987877" value="2. Xóa nám / tàn nhang">
-                2. Xóa nám / tàn nhang
-              </label>
-            </div>
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" name="entry.1590987877" value="3. Wax lông">
-                3. Wax lông
-              </label>
-            </div>
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" name="entry.1590987877" value="4. Triệt lông">
-                4. Triệt lông
-              </label>
-            </div>
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" name="entry.1590987877" value="5. Massage body nhức mỏi">
-                5. Massage body nhức mỏi
-              </label>
-            </div>
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" name="entry.1590987877" value="6. Gội đầu thư giãn - dưỡng sinh">
-                6. Gội đầu thư giãn - dưỡng sinh
-              </label>
-            </div>
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" name="entry.1590987877" value="7. Tắm trắng body">
-                7. Tắm trắng body
-              </label>
-            </div>
-          </div>
-        </fieldset>
-
-
-        <!-- Field type: "checkboxes" id: "1168851296" -->
-        <fieldset>
-          <legend for="1168851296">BẠN BIẾT ĐẾN M.I.A QUA ĐÂU?</legend>
-          <div class="form-group">
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" name="entry.641046112" value="Mạng xã hội (Facebook, Tiktok,...)">
-                Mạng xã hội (Facebook, Tiktok,...)
-              </label>
-            </div>
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" name="entry.641046112" value="Quảng cáo facebook">
-                Quảng cáo facebook
-              </label>
-            </div>
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" name="entry.641046112" value="Bạn bè giới thiệu">
-                Bạn bè giới thiệu
-              </label>
-            </div>
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" name="entry.641046112" value="Chưa nghe qua trước đó">
-                Chưa nghe qua trước đó
-              </label>
-            </div>
-          </div>
-        </fieldset>
-
         <input type="hidden" name="fvv" value="1">
-        <input type="hidden" name="fbzx" value="-7305354446674437132">
+        <input type="hidden" name="fbzx" value="-7279449895537479914">
         <!--
         CAVEAT: In multipages (multisection) forms, *pageHistory* field tells to google what sections we've currently completed.
         This usually starts as "0" for the first page, then "0,1" in the second page... up to "0,1,2..N" in n-th page.
@@ -408,7 +285,7 @@
     -->
         <input type="hidden" name="pageHistory" value="0">
 
-        <input class="btn btn-primary" type="submit" value="Submit" style="margin: auto; width: 100%;">
+        <input class="btn btn-primary" type="submit" value="Submit">
       </form>
     </div>
   </div>
@@ -716,21 +593,81 @@
       document.getElementById("popupInformation-1-1").style.display = "block";
       document.getElementById("popupInformation-1-2").style.display = "block";
 
-      const fillFormBtn = document.getElementById("fillFormBtn");
+      const completeBtn = document.getElementById("completeBtn");
       const spinAgainBtn = document.getElementById("spinAgainBtn");
 
       if (remainingSpins === 0) {
-        fillFormBtn.style.display = "block";
+        completeBtn.style.display = "block";
         spinAgainBtn.style.display = "none";
-        console.log("Last spin completed - showing Fill Form button");
+        console.log("Last spin completed - showing Complete button");
       } else {
-        fillFormBtn.style.display = "none";
+        completeBtn.style.display = "none";
         spinAgainBtn.style.display = "block";
-        console.log(`${remainingSpins} spins remaining - showing Spin Again button`);
+        console.log(`${remainingSpins} spins remaining - showing Spin Again button"`);
       }
 
       document.getElementById("popupOverlay").style.display = "flex";
       document.getElementById("content").classList.add("blur");
+    }
+
+    function completeAndSubmit() {
+      const userName = sessionStorage.getItem("currentUserName");
+      const phoneNumber = sessionStorage.getItem("currentPhoneNumber");
+      const prizeText = document.getElementById("12181340").value;
+
+      // Auto-fill required form fields with minimal data
+      const form = document.getElementById("bootstrapForm-1");
+      document.getElementById("795063311").value = userName || "Khách hàng";
+      document.getElementById("733058814").value = phoneNumber || "";
+      document.getElementById("12181340").value = prizeText;
+
+      // Create a hidden iframe for form submission
+      const iframeId = 'hiddenIframe-' + new Date().getTime();
+      const iframe = document.createElement("iframe");
+      iframe.id = iframeId;
+      iframe.name = iframeId;
+      iframe.style.display = "none";
+      document.body.appendChild(iframe);
+
+      // Set form target to iframe
+      form.setAttribute("target", iframeId);
+
+      // Submit form
+      form.submit();
+
+      // Handle submission completion
+      iframe.onload = function () {
+        setTimeout(() => {
+          closeModal();
+          Swal.fire({
+            title: 'Thành công',
+            text: 'M.I.A đã nhận được thông tin của bạn.',
+            icon: 'success',
+            timer: 2000,
+            showConfirmButton: false,
+          }).then(() => {
+            sessionStorage.clear();
+            let wonPrizes = JSON.parse(sessionStorage.getItem("wonPrizes")) || [];
+            wonPrizes.forEach(prize => updatePrizeQuantity(prize.text));
+            document.getElementById("popupOverlay").style.display = "none";
+            document.getElementById("content").classList.remove("blur");
+            document.getElementById("bootstrapForm-1").style.display = "none";
+            document.getElementById("bootstrapForm-1").reset();
+            document.getElementById("preSpinForm").style.display = "block";
+            document.getElementById("preSpinForm").reset();
+            document.getElementById("wrapper").style.display = "none";
+            const rotateAudio = document.querySelector('#wheel-rotate-music');
+            pauseAudio('#wheel-rotate-music');
+            rotateAudio.currentTime = 0;
+            confetti({
+              particleCount: 500,
+              startVelocity: 30,
+              spread: 360,
+            });
+            iframe.remove();
+          });
+        }, 1000);
+      };
     }
 
     function closeModal() {
