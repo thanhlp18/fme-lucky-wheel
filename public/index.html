@@ -171,8 +171,8 @@
         <img src="./assests/banner.png" alt="" class="bottom-img-content">
       </div>
     </div>
-    <div class="wheel-container" id="content" style="margin-bottom: 100px;">
-      <form id="preSpinForm" style="display: block;">
+    <div class="wheel-container" id="content">
+      <form id="preSpinForm" style="display: block;margin-bottom: 100px" class="pre-spin-form">
         <h2>Nhập thông tin để bắt đầu</h2>
         <fieldset>
           <legend>TÊN KHÁCH HÀNG</legend>
@@ -195,7 +195,7 @@
         </fieldset>
         <button type="submit" class="btn btn-primary">Bắt đầu quay</button>
       </form>
-      <div class="typo" id="wrapper" style="display: none;">
+      <div class="typo" id="wrapper" style="display: none ;margin-bottom: 100px">
         <div id="luckywheel" class="hc-luckywheel">
           <div style="position: relative;">
             <div class="hc-luckywheel-container">
@@ -614,6 +614,14 @@
       const phoneNumber = sessionStorage.getItem("currentPhoneNumber");
       const prizeText = document.getElementById("12181340").value;
 
+      // Get the Complete button
+      const completeBtn = document.getElementById("completeBtn");
+
+      // Add loading state and disable the button
+      completeBtn.classList.add("btn-loading");
+      completeBtn.setAttribute("disabled", true);
+      completeBtn.textContent = "Đang xử lý..."; // Optional: Change button text
+
       // Auto-fill required form fields with minimal data
       const form = document.getElementById("bootstrapForm-1");
       document.getElementById("795063311").value = userName || "Khách hàng";
@@ -655,6 +663,9 @@
             document.getElementById("preSpinForm").style.display = "block";
             document.getElementById("preSpinForm").reset();
             document.getElementById("wrapper").style.display = "none";
+            completeBtn.classList.remove("btn-loading");
+            completeBtn.setAttribute("disabled", false);
+            completeBtn.textContent = "Hoàn thành";
             const rotateAudio = document.querySelector('#wheel-rotate-music');
             pauseAudio('#wheel-rotate-music');
             rotateAudio.currentTime = 0;

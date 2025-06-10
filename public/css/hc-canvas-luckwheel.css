@@ -70,6 +70,72 @@
   margin-right: 0px;
 }
 
+@media screen and (max-width: 656px) {
+  .img-section {
+    height: 100vh;
+    display: none;
+    flex-direction: column;
+    justify-content: start;
+    margin-top: 0px;
+    align-items: center;
+    margin-right: 0px;
+  }
+
+  .pre-spin-form {
+    width: 100%;
+    height: fit-content;
+    margin-bottom: 70px !important;
+    margin-top: 0px !important;
+  }
+
+  .pre-spin-form h2 {
+    font-size: 1.3em;
+  }
+
+  .main-content {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+  }
+
+  .hc-luckywheel-item img {
+    position: absolute;
+    top: 90px !important;
+    left: 7px !important;
+    width: 40px !important;
+    height: 20px !important;
+  }
+
+  .typo {
+    margin-bottom: 500px !important;
+  }
+
+  #completeBtn {
+    width: fit-content;
+    margin: auto;
+  }
+
+  .popup {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  #popupInformation-1-1 {
+    height: 75%;
+    margin: auto auto;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .popup .subtitle {
+
+    bottom: 10% !important;
+    font-size: 13px !important;
+    margin: 0px auto !important;
+  }
+}
+
 .hc-luckywheel ul,
 .hc-luckywheel li {
   margin: 0;
@@ -402,9 +468,9 @@ body {
 
   .popup .subtitle {
     position: relative;
-    bottom: -10% !important;
+    bottom: -10%;
     font-size: 11px;
-    margin: auto !important;
+    margin: auto;
     width: fit-content;
     text-align: justify;
     font-family: "Main Font", sans-serif;
@@ -423,9 +489,9 @@ body {
 
 .popup .subtitle {
   position: relative;
-  bottom: -5% !important;
+  bottom: -5%;
   font-size: 10px;
-  margin: auto !important;
+  margin: auto;
   width: fit-content;
   text-align: justify;
   font-family: "Main Font", sans-serif;
@@ -501,9 +567,9 @@ body {
 
   .popup .subtitle {
     position: relative;
-    bottom: -20% !important;
+    bottom: -20%;
     font-size: 11px;
-    margin: auto !important;
+    margin: auto;
     width: fit-content;
     text-align: justify;
     font-family: "Main Font", sans-serif;
@@ -543,9 +609,9 @@ body {
 
   .popup .subtitle {
     position: relative;
-    bottom: -30% !important;
+    bottom: -30%;
     font-size: 11px;
-    margin: auto !important;
+    margin: auto;
     width: fit-content;
     text-align: justify;
     font-family: "Main Font", sans-serif;
@@ -727,9 +793,9 @@ body {
 
   .popup .subtitle {
     position: relative;
-    bottom: -10% !important;
+    bottom: -10%;
     font-size: 20px;
-    margin: auto !important;
+    margin: auto;
     width: fit-content;
     text-align: justify;
     font-family: "Main Font", sans-serif;
@@ -1125,4 +1191,35 @@ body {
 
 .rotate {
   transform: rotate(270deg);
+}
+
+/* CSS for loading state */
+.btn-loading {
+  position: relative;
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.btn-loading::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  border: 2px solid #fff;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: translateY(-50%) rotate(0deg);
+  }
+
+  100% {
+    transform: translateY(-50%) rotate(360deg);
+  }
 }
